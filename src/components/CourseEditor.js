@@ -27,25 +27,51 @@ class CourseEditor extends React.Component {
       })
   render() {
     return (
-        <div>
-          <h2>Course Editor: {this.state.course.title}</h2>
-          <div className="row">
-            <div className="col-4">
-              <ModuleList
-                  selectModule={this.selectModule}
-                  modules={this.state.course.modules}/>
+        <div className="container-fluid">
+            <div className="row col-12" id="wbdv-top-nav">
+                <div className="col-lg-10 col-sm-8" id="wbdv-course-title">CS5610 - Web Dev</div>
+                <div className="col-lg-2 col-sm-2">
+                    <button type="button" className="btn btn-success" id="wbdv-add-widget-button">Add Widget</button>
+                </div>
             </div>
-            <div className="col-8">
-              <LessonTabs
-                  lessons={this.state.module.lessons}/>
-              <TopicPills/>
-              <LinkWidget/>
-              <ImageWidget/>
-              <HeadingWidget/>
-              <ParagaphWidget/>
-              <ListWidget/>
+            <div className="row">
+                <div className="col-2 wbdv-content-panel" id="wbdv-module-list-container">
+                    <ul className="nav flex-column nav-pills">
+                        <a className="nav-link active wbdv-module-selector wbdv-module-list-item" href="#">Module 1 -
+                            jQuery</a>
+                        <a className="nav-link wbdv-module-list-item" href="#">Module 2 - React</a>
+                        <a className="nav-link wbdv-module-list-item" href="#">Module 3 - Redux</a>
+                        <a className="nav-link wbdv-module-list-item" href="#">Module 4 - Respect</a>
+                    </ul>
+                </div>
+                <div className="col-10 wbdv-content-panel">
+
+                    <ul className="nav nav-tabs">
+                        <li className="nav-item wbdv-lesson-link">
+                            <a className="nav-link active " href="#">Lesson 1</a>
+                        </li>
+                        <li className="nav-item wbdv-lesson-link">
+                            <a className="nav-link" href="#">Lesson 2</a>
+                        </li>
+                        <li className="nav-item wbdv-lesson-link">
+                            <a className="nav-link" href="#">Lesson 3</a>
+                        </li>
+                    </ul>
+                    <br/>
+                    <div className="row col-12">
+                        <TopicPills/>
+                    </div>
+                    <div className="row col-12 container"
+                         id="wbdv-widget-container">
+
+                        <LinkWidget/>
+                        <ImageWidget/>
+                        <HeadingWidget/>
+                        <ParagaphWidget/>
+                        <ListWidget/>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     )
   }

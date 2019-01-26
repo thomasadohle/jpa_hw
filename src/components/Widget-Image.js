@@ -1,8 +1,11 @@
 import React from 'react'
 import "./Styling/course-editor.style.client.css"
 
+
+
 export default class ImageWidget
     extends React.Component {
+
     render() {
         return(
             <div className="row col-10 container wbdv-heading-widget centered wbdv-widget"
@@ -26,7 +29,7 @@ export default class ImageWidget
                             <option value="4">Link</option>
                         </select>
                     </div>
-                    <div className="col-lg-1">
+                    <div className="col-lg-1 ">
                         <ion-icon className="wbdv-widget-delete-icon" name="close-circle-outline"
                                   size="large"></ion-icon>
                     </div>

@@ -43,6 +43,7 @@
     margin: 0 auto;
     background: #c5d2e8;
 
+
 }
 
 .wbdv-widget-move-icon{
@@ -57,15 +58,15 @@
 }
 
 .wbdv-widget-delete-icon{
-     background: red;
-     border: solid #576884 1px;
-     margin-right: 2px;
-     margin-left: 2px;
-     margin-top: 2px;
-     margin-bottom: 2px;
-     vertical-algin: center;
-     padding: 5px;
- }
+      background: red;
+      border: solid #576884 1px;
+      margin-right: 1px;
+      margin-left: 1px;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      vertical-algin: center;
+      padding: 5px;
+}
 
 
 .wbdv-widget{
