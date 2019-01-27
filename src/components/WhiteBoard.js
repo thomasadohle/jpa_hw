@@ -4,6 +4,8 @@ import CourseGrid from './CourseGrid'
 import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
+import "./Styling/course-editor.style.client.css"
+import "./Styling/course-list.style.client.css"
 class WhiteBoard extends Component {
     constructor() {
         super();
@@ -23,7 +25,7 @@ class WhiteBoard extends Component {
     render() {
         return (
             <div>
-                <h1>White Board</h1>
+                <h1>Course Manager</h1>
                 <Router>
                     <div>
                         <Link to="/">Course Grid</Link> |
@@ -38,7 +40,10 @@ class WhiteBoard extends Component {
                                exact
                                component={CourseEditor}/>
                         <Route path='/table'
-                               render={() => <CourseTable courses={this.state.courses}/>}/>
+                               render={() => <CourseTable
+                                                courses={this.state.courses}
+                                                addCourse={this.addCourse}
+                                                deleteCourse={this.deleteCourse}/>}/>
                     </div>
                 </Router>
             </div>

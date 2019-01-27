@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ModuleListItem = ({module, selectModule}) =>
-    <li onClick={() => selectModule(module)} className="list-group-item">
+    <li onClick={() => selectModule(module)} className="list-group-item nav-link wbdv-module-list-item">
       {module.title}
     </li>
 

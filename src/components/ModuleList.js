@@ -33,7 +33,7 @@ class ModuleList extends React.Component {
     return(
         <div>
           <h3>Module List</h3>
-          <ul className="list-group">
+          <ul className="nav flex-column nav-pills">
             <li className="list-group-item">
               <input
                   onChange={this.titleChanged}
@@ -49,7 +49,8 @@ class ModuleList extends React.Component {
                         <ModuleListItem
                             selectModule={this.props.selectModule}
                             key={module.id}
-                            module={module}/>
+                            module={module}
+                            className={"nav-link wbdv-module-list-item"}/>
                     )
                   }
               )

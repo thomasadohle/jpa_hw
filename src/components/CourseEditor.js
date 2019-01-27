@@ -9,6 +9,7 @@ import HeadingWidget from "./Widget-Heading";
 import ImageWidget from "./Widget-Image";
 import ListWidget from "./Widget-List";
 import LinkWidget from "./Widget-Link";
+import "./Styling/course-editor.style.client.css"
 
 class CourseEditor extends React.Component {
   constructor(props) {
@@ -36,13 +37,7 @@ class CourseEditor extends React.Component {
             </div>
             <div className="row">
                 <div className="col-2 wbdv-content-panel" id="wbdv-module-list-container">
-                    <ul className="nav flex-column nav-pills">
-                        <a className="nav-link active wbdv-module-selector wbdv-module-list-item" href="#">Module 1 -
-                            jQuery</a>
-                        <a className="nav-link wbdv-module-list-item" href="#">Module 2 - React</a>
-                        <a className="nav-link wbdv-module-list-item" href="#">Module 3 - Redux</a>
-                        <a className="nav-link wbdv-module-list-item" href="#">Module 4 - Respect</a>
-                    </ul>
+                   <ModuleList selectModule={this.selectModule} modules={this.state.course.modules}/>
                 </div>
                 <div className="col-10 wbdv-content-panel">
 
