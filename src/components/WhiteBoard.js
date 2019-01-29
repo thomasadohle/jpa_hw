@@ -43,7 +43,8 @@ class WhiteBoard extends Component {
                                render={() => <CourseTable
                                                 courses={this.state.courses}
                                                 addCourse={this.addCourse}
-                                                deleteCourse={this.deleteCourse}/>}/>
+                                                deleteCourse={this.deleteCourse}
+                                                courseService={this.courseService}/>}/>
                     </div>
                 </Router>
             </div>

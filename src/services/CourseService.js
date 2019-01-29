@@ -9,8 +9,10 @@ class CourseService {
                 id: (new Date()).getTime(),
                 title: 'New Course'
             }
+
         }
         this.courses.push(course)
+        console.log("Made a new course called " + course.title);
         return this.courses
     }
     findCourseById = courseId =>
@@ -19,9 +21,12 @@ class CourseService {
         )
     findAllCourses = () =>
         this.courses;
-    deleteCourse = deleteCourse =>
+    deleteCourse = deleteCourse =>{
         this.courses = this.courses.filter(
             course => course.id !== deleteCourse.id
         )
+        console.log("Course deleted");
+        console.log(this.courses);
+    }
 }
 export default CourseService
