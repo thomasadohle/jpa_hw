@@ -10,6 +10,9 @@ class WhiteBoard extends Component {
     constructor() {
         super();
         this.courseService = new CourseService()
+        var modules = this.courseService.findCourseModules(123)
+        var lessons = this.courseService.findLessons(modules)
+        var topics = this.courseService.findTopics(lessons)
         this.state = {
             courses: this.courseService.findAllCourses()
         }
@@ -25,7 +28,6 @@ class WhiteBoard extends Component {
     render() {
         return (
             <div>
-                <h1>Course Manager</h1>
                 <Router>
                     <div>
                         <Link to="/">Course Grid</Link> |
@@ -35,7 +37,8 @@ class WhiteBoard extends Component {
                                    <CourseGrid
                                        addCourse={this.addCourse}
                                        deleteCourse={this.deleteCourse}
-                                       courses={this.state.courses}/>}/>
+                                       courses={this.state.courses}
+                                        courseService={this.courseService}/>}/>
                         <Route path="/course/:id"
                                exact
                                component={CourseEditor}/>

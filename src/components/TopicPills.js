@@ -1,13 +1,22 @@
 import React from 'react'
 
-export default class TopicPills
-    extends React.Component {
-  render() {
-    return(
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a class="nav-link active"
-               href="#">Topic 1</a></li>
-          <li class="nav-item"><a class="nav-link"
-                                  href="#">Topic 2</a></li></ul>
-    );}}
+const TopicPills = ({topics}) =>
+    <ul className="nav nav-tabs">
+        {
+            topics.map(topic =>
+                <li key={topic.id} className="nav-item">
+
+                <a className="nav-link active"
+                   href="#">{topic.title}
+                </a>
+                </li> )
+        })
+        <li className="nav-item">
+            <ion-icon name="add-circle-outline" size="large"></ion-icon>
+        </li>
+
+    </ul>
+export default TopicPills
+
+
+

@@ -2,7 +2,8 @@ import React from 'react'
 import CourseRow from './CourseRow'
 import ModuleListItem from "./ModuleList";
 import CourseService from '../services/CourseService'
-
+import CourseGrid from "./CourseGrid";
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 var course = null;
 
 
@@ -11,7 +12,7 @@ var course = null;
 class CourseTable extends React.Component {
     constructor(props) {
         super(props)
-       this.courseDeleted = this.courseDeleted.bind(this);
+        this.courseDeleted = this.courseDeleted.bind(this);
         this.state = {
             course: {title: ''},
             courses: this.props.courses
@@ -19,25 +20,27 @@ class CourseTable extends React.Component {
     }
 
     createNewCourse = () => {
+        this.props.courseService.addCourse(this.state.course)
+
         this.setState(
             {
-                courses: [
-                    ...this.state.courses,
-                    this.state.course
-                ]
+                courses: this.state.courses
+                     /* ,
+                    this.state.course */
+
             }
         )
     }
 
-courseDeleted = () =>{
+    courseDeleted = () =>{
         console.log("Before updating, the courses are: " + this.state.courses)
         console.log("The coureses in the service are: " + this.props.courseService.courses)
-      this.setState({
-          courses: this.props.courseService.courses
+        this.setState({
+            courses: this.props.courseService.courses
 
-      })
-    console.log("After updating, the courses are: " + this.state.courses )
-}
+        })
+        console.log("After updating, the courses are: " + this.state.courses )
+    }
 
 
     newCourseTitleChanged = (event) => {
@@ -54,19 +57,31 @@ courseDeleted = () =>{
                 <form>
                     <div className="form-group row col-lg-12" id="wbdv-top-nav">
                         <nav className="navbar col-12">
-                            <div className="col-sm-4 col-lg-3 text-right" id='wbdv-title'>
-                                Course Manager
-                            </div>
-                            <div className="col-sm-6 col-lg-6" id="wbdv-new-course">
-                                <input type="text" className="form-control"
-                                       id="wbdv-new-course-title" placeholder="New course title"
-                                       onChange={this.newCourseTitleChanged}></input>
-                            </div>
-                            <div className="col-2">
-                                <ion-icon name="add-circle" size="large" id="wbdv-add-button"
-                                          onClick={this.createNewCourse}
-                                />
-                            </div>
+
+                                <Link to="/grid">
+                                    <div className="col-1" ><ion-icon name="apps" size="large"></ion-icon></div>
+                                </Link>
+                                <Route path="/grid" exact
+                                       render={() =>
+                                           <CourseGrid
+                                               addCourse={this.addCourse}
+                                               deleteCourse={this.deleteCourse}
+                                               courses={this.state.courses}
+                                               courseService={this.courseService}/>}/>
+
+                               <div className="col-sm-4 col-lg-3 text-right" id='wbdv-title'>
+                                    Course Manager
+                                </div>
+                                <div className="col-sm-6 col-lg-4" id="wbdv-new-course">
+                                    <input type="text" className="form-control"
+                                           id="wbdv-new-course-title" placeholder="New course title"
+                                           onChange={this.newCourseTitleChanged}></input>
+                                </div>
+                                <div className="col-1">
+                                    <ion-icon name="add-circle" size="large" id="wbdv-add-button"
+                                              onClick={this.createNewCourse}
+                                    />
+                                </div>
                         </nav>
 
                     </div>
@@ -92,7 +107,7 @@ courseDeleted = () =>{
                                         deleteCourse={this.props.deleteCourse}
                                         courseDeleted={this.courseDeleted}
                                         course_={course}
-                                        />
+                                    />
                                 )
                             }
                             </tbody>

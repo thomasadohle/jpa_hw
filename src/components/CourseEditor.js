@@ -19,13 +19,28 @@ class CourseEditor extends React.Component {
     const course = this.courseService.findCourseById(courseId)
     this.state = {
       course: course,
-      module: course.modules[0]
+      module: course.modules[0],
+        lesson: course.modules[0].lessons[0],
+        topic: course.modules[0].lessons[0].topics[0]
     }
+    console.log(this.state.topic)
   }
   selectModule = module =>
-      this.setState({
-        module: module
-      })
+        this.setState({
+            module: module,
+            lesson: module.lessons[0],
+            topic: module.lessons[0].topics[0]
+        })
+
+    selectLesson = lesson =>{
+        console.log(lesson)
+        this.setState({
+            lesson: lesson,
+            topic: lesson.topics[0]
+
+        })}
+
+
   render() {
     return (
         <div className="container-fluid">
@@ -41,20 +56,11 @@ class CourseEditor extends React.Component {
                 </div>
                 <div className="col-10 wbdv-content-panel">
 
-                    <ul className="nav nav-tabs">
-                        <li className="nav-item wbdv-lesson-link">
-                            <a className="nav-link active " href="#">Lesson 1</a>
-                        </li>
-                        <li className="nav-item wbdv-lesson-link">
-                            <a className="nav-link" href="#">Lesson 2</a>
-                        </li>
-                        <li className="nav-item wbdv-lesson-link">
-                            <a className="nav-link" href="#">Lesson 3</a>
-                        </li>
-                    </ul>
+                    <LessonTabs lessons={this.state.module.lessons}
+                                selectLesson={this.selectLesson}/>
                     <br/>
                     <div className="row col-12">
-                        <TopicPills/>
+                        <TopicPills topics={this.state.lesson.topics}/>
                     </div>
                     <div className="row col-12 container"
                          id="wbdv-widget-container">
