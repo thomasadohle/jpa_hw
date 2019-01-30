@@ -51,8 +51,8 @@ class WhiteBoard extends Component {
                     </div>
                 </Router>
             </div>
-        )
-    }
+        );
+    };
 }
 
 export default WhiteBoard;

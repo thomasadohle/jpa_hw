@@ -23,11 +23,34 @@ class ModuleList extends React.Component {
         }
     )
   }
+
+  deleteModule = (module) => {
+      console.log("Made it here")
+      const modulesBeforeDelete = this.state.modules
+      const modulesAfterDelete = modulesBeforeDelete.filter(
+              mod => mod.title !== module.title
+          )
+      this.setState(
+          {
+              modules: [
+                  ...modulesAfterDelete
+              ]
+          }
+      )
+      console.log("Module Deleted");
+      console.log(this.state.modules);
+
+  }
+
   titleChanged = (event) => {
     this.setState(
         {
           module: {title: event.target.value}
         });
+  }
+
+  setActive = (module) =>{
+      module.classList.add("active");
   }
   render() {
     return(
@@ -50,7 +73,9 @@ class ModuleList extends React.Component {
                             selectModule={this.props.selectModule}
                             key={module.id}
                             module={module}
-                            className={"nav-link wbdv-module-list-item"}/>
+                            className={"nav-link wbdv-module-list-item"}
+                            setActive={this.setActive}
+                            deleteModule={this.deleteModule}/>
                     )
                   }
               )
