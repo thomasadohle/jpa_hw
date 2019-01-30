@@ -37,8 +37,7 @@ class ModuleList extends React.Component {
               ]
           }
       )
-      console.log("Module Deleted");
-      console.log(this.state.modules);
+
 
   }
 
@@ -49,9 +48,24 @@ class ModuleList extends React.Component {
         });
   }
 
-  setActive = (module) =>{
-      module.classList.add("active");
-  }
+updateModule = (module) => {
+      const newName = prompt("What would you like to rename the module?")
+      /*this.deleteModule(module)
+      console.log("Module Deleted");
+      console.log(this.state.modules);
+        const beforeUpdate = module
+        beforeUpdate.title = newName
+       const modulesBeforeUpdate = this.state.modules
+       modulesBeforeUpdate.push(beforeUpdate)
+
+*/
+      module.title = newName
+        this.setState({
+            modules: this.state.modules
+        })
+}
+
+
   render() {
     return(
         <div>
@@ -75,7 +89,8 @@ class ModuleList extends React.Component {
                             module={module}
                             className={"nav-link wbdv-module-list-item"}
                             setActive={this.setActive}
-                            deleteModule={this.deleteModule}/>
+                            deleteModule={this.deleteModule}
+                        updateModule={this.updateModule}/>
                     )
                   }
               )

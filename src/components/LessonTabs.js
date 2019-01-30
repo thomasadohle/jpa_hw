@@ -13,5 +13,6 @@ const LessonTabs = ({lessons, selectLesson}) =>
                 </li>
             )
         }
+        <li className="form-control"></li>
     </ul>
 export default LessonTabs

@@ -28,7 +28,7 @@ const ModuleListItem = ({module, selectModule, updateModule, moduleUpdated, dele
             <div className="col-1">
                 <ion-icon name="create" size="large"
                           onClick={() => {
-                              console.log("clicked update")
+                              updateModule(module)
                           }
                           }
                 />
