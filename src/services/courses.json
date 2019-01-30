@@ -86,11 +86,71 @@
     "modules": [
       {
         "id": 3,
-        "title": "SQL"
+        "title": "SQL",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Lesson 1 DB",
+            "topics": [
+              {
+                "id": 1,
+                "title": "SQL L1 T1"
+              },
+              {
+                "id": 2,
+                "title": "SQL L1 T2"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Lesson 2",
+            "topics": [
+              {
+                "id": 5,
+                "title": "SQL L2 T1"
+              },
+              {
+                "id": 6,
+                "title": "SQL L2 T2"
+              }
+            ]
+          }
+        ]
       },
       {
         "id": 4,
-        "title": "JPA"
+        "title": "JPA",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Lesson 1 JPA",
+            "topics": [
+              {
+                "id": 1,
+                "title": "JPA L1 T1"
+              },
+              {
+                "id": 2,
+                "title": "JPA L1 T2"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Lesson 2 JPA",
+            "topics": [
+              {
+                "id": 5,
+                "title": "JPA L2 T1"
+              },
+              {
+                "id": 6,
+                "title": "JPA L2 T2"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -100,11 +160,72 @@
     "modules": [
       {
         "id": 5,
-        "title": "Agile"
+        "title": "Agile",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Lesson 1 Agile",
+            "topics": [
+              {
+                "id": 1,
+                "title": "Agile L1 T1"
+              },
+              {
+                "id": 2,
+                "title": "Agile L1 T2"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Lesson 2 Agile",
+            "topics": [
+              {
+                "id": 5,
+                "title": "Agile L2 T1"
+              },
+              {
+                "id": 6,
+                "title": "Agile L2 T2"
+              }
+            ]
+          }
+        ]
+
       },
       {
         "id": 6,
-        "title": "Testing"
+        "title": "Testing",
+        "lessons": [
+          {
+            "id": 1,
+            "title": "Lesson 1 Test",
+            "topics": [
+              {
+                "id": 1,
+                "title": "Test L1 T1"
+              },
+              {
+                "id": 2,
+                "title": "Test L1 T2"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Lesson 2 Test",
+            "topics": [
+              {
+                "id": 5,
+                "title": "Test L2 T1"
+              },
+              {
+                "id": 6,
+                "title": "Test L2 T2"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
