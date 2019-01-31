@@ -89,7 +89,7 @@
 }
 
 #lessonListItemRow{
-    border: solid blue 1px;
+
 
 
 }
@@ -111,6 +111,16 @@
     padding-right: 15px;
     background: #6600cc;
 }
-#addNewLessonDiv{
-
+#addNewTopic{
+    background: #d0e1e1;
+    vertical-align: top;
+}
+#newTopicName{
+    vertical-align: top;
+}
+#topicListItem{
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#divInsideTopicListItemRow{
 }

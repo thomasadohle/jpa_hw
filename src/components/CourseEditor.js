@@ -83,6 +83,41 @@ class CourseEditor extends React.Component {
         })
     }
 
+    deleteTopic = (topic) => {
+        console.log("Made it to deleteTopic")
+        const topicsBeforeDelete = this.state.lesson.topics
+        const topicsAfterDelete = topicsBeforeDelete.filter(
+            top => top.title !== topic.title
+        )
+        console.log(topicsAfterDelete)
+        var newLesson = this.state.lesson
+        newLesson.topics=topicsAfterDelete
+        console.log(newLesson)
+        this.setState(
+            {
+                lesson: newLesson
+            }
+        )
+    }
+
+    updateTopic = (topic) => {
+        const newName = prompt("What would you like to rename the topic?")
+        topic.title = newName
+        this.setState({
+            modules: this.state.modules
+        })
+    }
+
+    createTopic = (topicTitle) => {
+        const newTopic = {
+            "title": topicTitle
+        }
+        this.state.lesson.topics.push(newTopic)
+        this.setState({
+            newTopic: true
+        })
+    }
+
 
   render() {
     return (
@@ -106,7 +141,10 @@ class CourseEditor extends React.Component {
                                 updateLesson={this.updateLesson}/>
                     <br/>
                     <div className="row col-12">
-                        <TopicPills topics={this.state.lesson.topics}/>
+                        <TopicPills topics={this.state.lesson.topics}
+                                deleteTopic={this.deleteTopic}
+                                updateTopic={this.updateTopic}
+                                createTopic={this.createTopic}/>
                     </div>
                     <div className="row col-12 container"
                          id="wbdv-widget-container">
