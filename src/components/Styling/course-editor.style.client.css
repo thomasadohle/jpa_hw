@@ -82,3 +82,35 @@
 #wbdv-add-widget-button{
     margin-top: 10px;
 }
+
+#lessonListItem{
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#lessonListItemRow{
+    border: solid blue 1px;
+
+
+}
+#divInsideLessonListItemRow{
+    background: #6600cc;
+    padding-top: 12px;
+    padding-bottom: 13px;
+
+}
+#deleteButtonn{
+
+    vertical-align: bottom;
+}
+#updateButtonn{
+    vertical-align: bottom;
+}
+#addNewLesson{
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #6600cc;
+}
+#addNewLessonDiv{
+
+}

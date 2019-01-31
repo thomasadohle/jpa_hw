@@ -37,8 +37,6 @@ class ModuleList extends React.Component {
               ]
           }
       )
-
-
   }
 
   titleChanged = (event) => {
@@ -50,15 +48,6 @@ class ModuleList extends React.Component {
 
 updateModule = (module) => {
       const newName = prompt("What would you like to rename the module?")
-      /*this.deleteModule(module)
-      console.log("Module Deleted");
-      console.log(this.state.modules);
-        const beforeUpdate = module
-        beforeUpdate.title = newName
-       const modulesBeforeUpdate = this.state.modules
-       modulesBeforeUpdate.push(beforeUpdate)
-
-*/
       module.title = newName
         this.setState({
             modules: this.state.modules
@@ -73,8 +62,8 @@ updateModule = (module) => {
           <ul className="nav flex-column nav-pills">
             <li className="list-group-item">
               <input
-                  onChange={this.titleChanged}
-                  className="form-control"/>
+                onChange={this.titleChanged}
+                className="form-control"/>
               <button
                   onClick={this.createModule}
                   className="btn btn-primary btn-block">Add Module</button>

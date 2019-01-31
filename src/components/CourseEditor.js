@@ -17,13 +17,18 @@ class CourseEditor extends React.Component {
     this.courseService = new CourseService()
     const courseId = parseInt(props.match.params.id)
     const course = this.courseService.findCourseById(courseId)
+      const modules = course.modules
+      const lessons = modules.lessons
+      console.log(lessons)
+      console.log(modules)
     this.state = {
       course: course,
+        modules: course.modules,
       module: course.modules[0],
         lesson: course.modules[0].lessons[0],
-        topic: course.modules[0].lessons[0].topics[0]
+        topic: course.modules[0].lessons[0].topics[0],
     }
-    console.log(this.state.topic)
+    console.log("this.state.lessons: " + this.state.lessons)
   }
   selectModule = module =>
         this.setState({
@@ -39,6 +44,44 @@ class CourseEditor extends React.Component {
             topic: lesson.topics[0]
 
         })}
+
+
+    createLesson = (lessonTitle) => {
+      const newLesson = {
+          "title": lessonTitle
+      }
+      this.state.module.lessons.push(newLesson)
+        console.log(this.state.module.lessons)
+
+        this.setState({
+            newModule: true
+        })
+    }
+
+    deleteLesson = (lesson) => {
+        console.log("Made it to deleteLesson")
+        const lessonsBeforeDelete = this.state.module.lessons
+        const lessonsAfterDelete = lessonsBeforeDelete.filter(
+            less => less.title !== lesson.title
+        )
+        console.log(lessonsAfterDelete)
+        var newModule = this.state.module
+        newModule.lessons=lessonsAfterDelete
+        console.log(newModule)
+        this.setState(
+            {
+                module: newModule
+            }
+        )
+    }
+
+    updateLesson = (lesson) => {
+        const newName = prompt("What would you like to rename the lesson?")
+        lesson.title = newName
+        this.setState({
+            modules: this.state.modules
+        })
+    }
 
 
   render() {
@@ -57,7 +100,10 @@ class CourseEditor extends React.Component {
                 <div className="col-10 wbdv-content-panel">
 
                     <LessonTabs lessons={this.state.module.lessons}
-                                selectLesson={this.selectLesson}/>
+                                selectLesson={this.selectLesson}
+                                createLesson={this.createLesson}
+                                deleteLesson={this.deleteLesson}
+                                updateLesson={this.updateLesson}/>
                     <br/>
                     <div className="row col-12">
                         <TopicPills topics={this.state.lesson.topics}/>
