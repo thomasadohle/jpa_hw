@@ -58,9 +58,9 @@ updateModule = (module) => {
   render() {
     return(
         <div>
-          <h3>Module List</h3>
+          <h3 id="moduleListTitle">Module List</h3>
           <ul className="nav flex-column nav-pills">
-            <li className="list-group-item">
+            <li className="list-group-item" id="addModule">
               <input
                 onChange={this.titleChanged}
                 className="form-control"/>

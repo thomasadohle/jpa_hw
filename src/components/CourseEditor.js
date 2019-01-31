@@ -2,6 +2,7 @@ import React from 'react'
 import ModuleList from "./ModuleList";
 import LessonTabs from "./LessonTabs";
 import TopicPills from "./TopicPills";
+import WidgetList from "./WidgetList"
 import CourseService from "../services/CourseService"
 import WidgetAbstract from "./Widget-Abstract";
 import ParagaphWidget from "./Widget-Paragraph";
@@ -129,10 +130,10 @@ class CourseEditor extends React.Component {
                 </div>
             </div>
             <div className="row">
-                <div className="col-2 wbdv-content-panel" id="wbdv-module-list-container">
+                <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
                    <ModuleList selectModule={this.selectModule} modules={this.state.course.modules}/>
                 </div>
-                <div className="col-10 wbdv-content-panel">
+                <div className="col-9 wbdv-content-panel">
 
                     <LessonTabs lessons={this.state.module.lessons}
                                 selectLesson={this.selectLesson}
@@ -154,6 +155,7 @@ class CourseEditor extends React.Component {
                         <HeadingWidget/>
                         <ParagaphWidget/>
                         <ListWidget/>
+
                     </div>
                 </div>
             </div>
