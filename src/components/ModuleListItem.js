@@ -1,13 +1,16 @@
 import React from 'react'
 
-const ModuleListItem = ({module, selectModule, updateModule, moduleUpdated, deleteModule, setActive}) =>
-    <li className="list-group-item nav-link wbdv-module-list-item">
-        <div className="col-lg-12 row">
-            <div className="col-6">
-                <button type="button" className="btn btn-warning" id={module.title}
+const ModuleListItem = ({triggerModuleChange, module, selectModule, updateModule, moduleUpdated, deleteModule, setActive,idFromParent}) =>
+    <li className="list-group-item nav-link wbdv-module-list-item deb-class" id={idFromParent}>
+        <div className="col-lg-12 row"
+
+               >
+            <div className="col-6"
+                >
+                <button type="button" className="btn btn-warning active"
+                        id={module.title}
                         onClick={() => {
-                            document.getElementById(module.title).classList.add("active")
-                            selectModule(module)
+                            {selectModule(module)}
                         }
                         }>{module.title}</button>
             </div>

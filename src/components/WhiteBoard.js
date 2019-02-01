@@ -46,7 +46,7 @@ class WhiteBoard extends Component {
             })
             console.log("After event: " + this.state.courseView)
             return "/"
-        } 
+        }
     }
 
 
@@ -55,20 +55,18 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
-                        <Link to={this.toggleViews}>Course Grid</Link> |
-                        <Link to="/table">Course Table</Link>
                         {this.state.courseView ===grid &&
                         <Link to="/table">
                             <button className="btn btn-primary"
                                     onClick={this.toggleViews}>
-                                Toggle</button>
+                                Toggle Course Views</button>
                         </Link>
                         }
                         {this.state.courseView ===table &&
                         <Link to="/">
                             <button className="btn btn-primary"
                                     onClick={this.toggleViews}>
-                                Toggle</button>
+                                Toggle Course View</button>
                         </Link>
                         }
 

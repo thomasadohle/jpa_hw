@@ -48,8 +48,14 @@ class CourseEditor extends React.Component {
 
 
     createLesson = (lessonTitle) => {
+      console.log(lessonTitle)
+      var actualTitle = lessonTitle
+        if(actualTitle===""){
+            actualTitle = "New Lesson"
+        }
+        console.log(actualTitle)
       const newLesson = {
-          "title": lessonTitle
+          "title": actualTitle
       }
       this.state.module.lessons.push(newLesson)
         console.log(this.state.module.lessons)
@@ -110,8 +116,12 @@ class CourseEditor extends React.Component {
     }
 
     createTopic = (topicTitle) => {
+      var actualTitle = topicTitle
+        if(topicTitle===""){
+            actualTitle = "New Topic"
+        }
         const newTopic = {
-            "title": topicTitle
+            "title": actualTitle
         }
         this.state.lesson.topics.push(newTopic)
         this.setState({
@@ -131,7 +141,9 @@ class CourseEditor extends React.Component {
             </div>
             <div className="row">
                 <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
-                   <ModuleList selectModule={this.selectModule} modules={this.state.course.modules}/>
+                   <ModuleList selectModule={this.selectModule}
+                               modules={this.state.course.modules}
+                               activeModule={this.state.module}/>
                 </div>
                 <div className="col-9 wbdv-content-panel">
 

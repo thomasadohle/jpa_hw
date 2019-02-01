@@ -116,8 +116,11 @@
     background: #d0e1e1;
     vertical-align: top;
 }
+#addNewTopicDiv{
+    vertical-align: 10px;
+}
 #newTopicName{
-    vertical-align: top;
+    font-size: small;
 }
 #topicListItem{
     padding-left: 4px;
@@ -136,4 +139,7 @@
 }
 #newLessonName{
     font-size:small;
+}
+#activeModule{
+
 }

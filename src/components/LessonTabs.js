@@ -9,7 +9,6 @@ const LessonTabs = ({lessons, selectLesson, createLesson, deleteLesson, updateLe
                         <div className="col-12" id="divInsideLessonListItemRow">
                             <button type="button" className="btn btn-warning" id="lessonButton"
                                     onClick={() => {
-                                        document.getElementById(module.title).classList.add("active")
                                         selectLesson(lesson)
                                     }
                                     }>{lesson.title}</button>

@@ -29,7 +29,7 @@ const TopicPills = ({topics, createTopic, deleteTopic, updateTopic}) =>
                     </div>
                 </li> )
         }
-        <li className="list-group-item nav-item" id="addNewTopic">
+        <li className="nav-item" id="addNewTopic">
             <div className = "col-12 form-inline " id="addNewTopicDiv">
                 <input
                     id="newTopicName"
