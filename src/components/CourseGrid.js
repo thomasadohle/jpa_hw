@@ -1,5 +1,6 @@
 import React from 'react'
 import CourseCard from './CourseCard'
+import "./Styling/course-grid.style.client.css"
 import NewCourseCard from "./NewCourseCard";
 //const CourseGrid = ({courses, deleteCourse, addCourse}) =>
 
@@ -59,7 +60,7 @@ class CourseGrid extends React.Component{
 
                     </div>
                 </form>
-                    <div className="card-deck">
+                    <div className="card-deck col-12">
                         {
                             this.state.courses.map(course =>
                                 <CourseCard

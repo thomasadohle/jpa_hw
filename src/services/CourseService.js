@@ -29,6 +29,7 @@ class CourseService {
         )
         console.log("Course deleted");
         console.log(this.courses);
+        return this.courses;
     }
 
     findCourseModules = courseId => {

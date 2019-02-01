@@ -124,7 +124,7 @@ class CourseEditor extends React.Component {
     return (
         <div className="container-fluid">
             <div className="row col-12" id="wbdv-top-nav">
-                <div className="col-lg-10 col-sm-8" id="wbdv-course-title">CS5610 - Web Dev</div>
+                <div className="col-lg-10 col-sm-8" id="wbdv-course-title">{this.state.course.title}</div>
                 <div className="col-lg-2 col-sm-2">
                     <button type="button" className="btn btn-success" id="wbdv-add-widget-button">Add Widget</button>
                 </div>

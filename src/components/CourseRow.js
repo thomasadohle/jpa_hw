@@ -8,7 +8,10 @@ const CourseRow = ({course_, deleteCourse, courseDeleted}) =>
                 <ion-icon name="apps" size="large"></ion-icon>
             </Link>
         </td>
-        <td>{course_.title}</td>
+        <td><Link to={`/course/${course_.id}`}>
+            {course_.title}
+            </Link>
+        </td>
         <td>me</td>
         <td>5:30 AM</td>
         <td>
