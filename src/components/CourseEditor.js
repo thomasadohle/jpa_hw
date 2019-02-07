@@ -4,13 +4,15 @@ import LessonTabs from "./LessonTabs";
 import TopicPills from "./TopicPills";
 import WidgetList from "./WidgetList"
 import CourseService from "../services/CourseService"
-import WidgetAbstract from "./Widget-Abstract";
-import ParagaphWidget from "./Widget-Paragraph";
-import HeadingWidget from "./Widget-Heading";
-import ImageWidget from "./Widget-Image";
-import ListWidget from "./Widget-List";
-import LinkWidget from "./Widget-Link";
+import WidgetListContainer from '../containers/WidgetListContainer'
+import widgetReducer from '../reducers/WidgetReducers'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
 import "./Styling/course-editor.style.client.css"
+import setUp from "../reducers/InitialState"
+const initialState = setUp()
+console.log(initialState)
+const store = createStore(widgetReducer, initialState);
 
 class CourseEditor extends React.Component {
   constructor(props) {
@@ -161,13 +163,10 @@ class CourseEditor extends React.Component {
                     </div>
                     <div className="row col-12 container"
                          id="wbdv-widget-container">
-
-                        <LinkWidget/>
-                        <ImageWidget/>
-                        <HeadingWidget/>
-                        <ParagaphWidget/>
-                        <ListWidget/>
-
+                        <Provider store={store}>
+                            <WidgetListContainer
+                                topicId = {this.state.topic.id}/>
+                        </Provider>
                     </div>
                 </div>
             </div>

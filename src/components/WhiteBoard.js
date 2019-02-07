@@ -20,6 +20,7 @@ class WhiteBoard extends Component {
             courses: this.courseService.findAllCourses(),
             courseView: grid
         }
+        console.log("Courses from WhiteBoard: " + this.state.courses)
     }
     deleteCourse = course =>
         this.setState({

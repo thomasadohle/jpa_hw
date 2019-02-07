@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class HeadingWidget
+export default class WidHeading
     extends React.Component {
     render() {
         return (

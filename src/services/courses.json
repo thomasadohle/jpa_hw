@@ -16,11 +16,13 @@
             "topics": [
               {
                 "id": 1,
-                "title": "jQuery L1 T1"
+                "title": "jQuery L1 T1",
+                "widgets": []
               },
               {
                 "id": 2,
-                "title": "jQuery L1 T2"
+                "title": "jQuery L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -30,11 +32,13 @@
             "topics": [
               {
                 "id": 5,
-                "title": "jQuery L2 T1"
+                "title": "jQuery L2 T1",
+                "widgets": []
               },
               {
                 "id": 6,
-                "title": "jQuery L2 T2"
+                "title": "jQuery L2 T2",
+                "widgets": []
               }
             ]
           }
@@ -54,11 +58,13 @@
             "topics": [
               {
                 "id": 3,
-                "title": "React L1 T1"
+                "title": "React L1 T1",
+                "widgets": []
               },
               {
                 "id": 4,
-                "title": "React L1 T2"
+                "title": "React L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -68,11 +74,13 @@
             "topics": [
               {
                 "id": 7,
-                "title": "React L2 T1"
+                "title": "React L2 T1",
+                "widgets": []
               },
               {
                 "id": 8,
-                "title": "React L2 T2"
+                "title": "React L2 T2",
+                "widgets": []
               }
             ]
           }
@@ -94,11 +102,13 @@
             "topics": [
               {
                 "id": 1,
-                "title": "SQL L1 T1"
+                "title": "SQL L1 T1",
+                "widgets": []
               },
               {
                 "id": 2,
-                "title": "SQL L1 T2"
+                "title": "SQL L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -108,11 +118,13 @@
             "topics": [
               {
                 "id": 5,
-                "title": "SQL L2 T1"
+                "title": "SQL L2 T1",
+                "widgets": []
               },
               {
                 "id": 6,
-                "title": "SQL L2 T2"
+                "title": "SQL L2 T2",
+                "widgets": []
               }
             ]
           }
@@ -128,11 +140,13 @@
             "topics": [
               {
                 "id": 1,
-                "title": "JPA L1 T1"
+                "title": "JPA L1 T1",
+                "widgets": []
               },
               {
                 "id": 2,
-                "title": "JPA L1 T2"
+                "title": "JPA L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -142,11 +156,13 @@
             "topics": [
               {
                 "id": 5,
-                "title": "JPA L2 T1"
+                "title": "JPA L2 T1",
+                "widgets": []
               },
               {
                 "id": 6,
-                "title": "JPA L2 T2"
+                "title": "JPA L2 T2",
+                "widgets": []
               }
             ]
           }

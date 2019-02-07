@@ -1,7 +1,7 @@
-import courses from './courses.json'
+import setUp from "../reducers/InitialState"
 class CourseService {
     constructor() {
-        this.courses = courses;
+        this.courses = setUp();
     }
     addCourse = course => {
         if(course === null) {
@@ -62,6 +62,44 @@ class CourseService {
         }
         console.log(topics)
         return topics
+    }
+
+    createWidget = (topiId, widget) =>{
+        //
+    }
+
+    findWidgets = (topicId) =>{
+        console.log("findWidgets was called")
+        console.log(this.courses)
+        for (var c in this.courses){
+            console.log("Current course: " + this.courses[c].title)
+            for (var m in this.courses[c].modules){
+                console.log("Current module: " + this.courses[c].modules[m])
+                for (var l in this.courses[c].modules[m].lessons){
+                    for (var t in this.courses[c].modules[m].lessons[l].topics){
+                        console.log("Current topic: " + t)
+                        console.log("Current topic ID: " +this.courses[c].modules[m].lessons[l].topics[t].id)
+                        if (this.courses[c].modules[m].lessons[l].topics[t].id === topicId){
+                            console.log(this.courses[c].modules[m].lessons[l].topics[t].widgets)
+                            return this.courses[c].modules[m].lessons[l].topics[t].widgets
+                        }
+                    }
+                }
+            }
+        }
+        console.log("Failed to find widgets")
+    }
+
+    findWidget = (widgetId) =>{
+        //
+    }
+
+    updateWidget = (widgetId, widget) => {
+        //
+    }
+
+    deleteWidget = (widgetId) => {
+        return this.state.widgets.filter(widget => widget.id !== widgetId)
     }
 }
 export default CourseService;

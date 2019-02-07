@@ -3,7 +3,7 @@ import "./Styling/course-editor.style.client.css"
 
 
 
-export default class ImageWidget
+export default class WidImage
     extends React.Component {
 
     render() {
