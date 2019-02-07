@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebc5ad4f-0889-4d6d-9faa-a48d8213bd66" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/WidComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/WidgetListContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/InitialState.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/WidgetReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CourseEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CourseEditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/WhiteBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WhiteBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-Abstract.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-Heading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidHeading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-Image.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidImage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidLink.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidgList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget-Paragraph.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidParagraph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/WidgetList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/WidgetList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/CourseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/CourseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/courses.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/courses.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/InitialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/InitialState.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -86,8 +68,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/reducers/InitialState.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="762">
-                  <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
+                <state relative-caret-position="473">
+                  <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -207,8 +189,8 @@
         <option value="$PROJECT_DIR$/src/components/WhiteBoard.js" />
         <option value="$PROJECT_DIR$/src/containers/WidgetListContainer.js" />
         <option value="$PROJECT_DIR$/src/components/CourseEditor.js" />
-        <option value="$PROJECT_DIR$/src/reducers/InitialState.js" />
         <option value="$PROJECT_DIR$/src/services/CourseService.js" />
+        <option value="$PROJECT_DIR$/src/reducers/InitialState.js" />
       </list>
     </option>
   </component>
@@ -311,12 +293,12 @@
       <updated>1548509666352</updated>
       <workItem from="1548509668111" duration="54871000" />
       <workItem from="1549137939978" duration="1353000" />
-      <workItem from="1549280347664" duration="28135000" />
+      <workItem from="1549280347664" duration="28429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125859000" />
+    <option name="totallyTimeSpent" value="126153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3278" y="-87" width="1936" height="1096" extended-state="6" />
@@ -649,13 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/InitialState.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/CourseEditor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -670,6 +645,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/InitialState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
         </state>
       </provider>
     </entry>

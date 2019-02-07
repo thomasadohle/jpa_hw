@@ -94,23 +94,23 @@ const widgetTemplate =
     listWidget1.list.listType = "ORDERED";
 
     const setUp = () =>{
-    courses[0].modules[0].lessons[0].topics[0].widgets.push(linkWidget1);
-    courses[0].modules[0].lessons[0].topics[0].widgets.push(paragraphWidget1);
-    courses[0].modules[0].lessons[0].topics[0].widgets.push(imageWidget1);
-    courses[0].modules[0].lessons[0].topics[1].widgets.push(linkWidget2);
-    courses[0].modules[0].lessons[0].topics[1].widgets.push(paragraphWidget1);
-    courses[0].modules[0].lessons[0].topics[1].widgets.push(imageWidget2);
-    courses[0].modules[0].lessons[1].topics[0].widgets.push(listWidget2);
-    courses[0].modules[0].lessons[1].topics[0].widgets.push(paragraphWidget1);
-    courses[0].modules[0].lessons[1].topics[0].widgets.push(headingWidget2);
-    courses[0].modules[0].lessons[1].topics[1].widgets.push(listWidget1);
-    courses[0].modules[0].lessons[1].topics[1].widgets.push(paragraphWidget1);
-    courses[0].modules[0].lessons[1].topics[1].widgets.push(headingWidget1);
-    console.log(courses);
-    return courses;
+       if (! courses[0].modules[0].lessons[0].topics[0].widgets[0]){
+        courses[0].modules[0].lessons[0].topics[0].widgets.push(linkWidget1);
+        courses[0].modules[0].lessons[0].topics[0].widgets.push(paragraphWidget1);
+        courses[0].modules[0].lessons[0].topics[0].widgets.push(imageWidget1);
+        courses[0].modules[0].lessons[0].topics[1].widgets.push(linkWidget2);
+        courses[0].modules[0].lessons[0].topics[1].widgets.push(paragraphWidget1);
+        courses[0].modules[0].lessons[0].topics[1].widgets.push(imageWidget2);
+        courses[0].modules[0].lessons[1].topics[0].widgets.push(listWidget2);
+        courses[0].modules[0].lessons[1].topics[0].widgets.push(paragraphWidget1);
+        courses[0].modules[0].lessons[1].topics[0].widgets.push(headingWidget2);
+        courses[0].modules[0].lessons[1].topics[1].widgets.push(listWidget1);
+        courses[0].modules[0].lessons[1].topics[1].widgets.push(paragraphWidget1);
+        courses[0].modules[0].lessons[1].topics[1].widgets.push(headingWidget1);
+        console.log(courses);
+       }
+        return courses;
     }
-
-    const coursesWithWidgets = setUp
     export default setUp
 
 
