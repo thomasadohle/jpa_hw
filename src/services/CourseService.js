@@ -70,7 +70,7 @@ class CourseService {
 
     findWidgets = (topicId) =>{
         console.log("findWidgets was called")
-        console.log(this.courses)
+        console.log(this.courses.length)
         for (var c in this.courses){
             console.log("Current course: " + this.courses[c].title)
             for (var m in this.courses[c].modules){
