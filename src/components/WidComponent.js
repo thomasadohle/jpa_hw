@@ -1,6 +1,7 @@
 import React from 'react'
 import WidHeading from './WidHeading'
 import WidImage from './WidImage'
+import WidParagraph from './WidParagraph'
 //
 // const WidComponent = ({widget, deleteWidget, updateWidget}) =>
 //     <div>
@@ -56,6 +57,9 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
         </div>
         {widget.type ==="IMAGE" &&
         <WidImage widget={widget}
+                  updateWidet={updateWidget}/>}
+        {widget.type ==="PARAGRAPH" &&
+        <WidParagraph widget={widget}
                   updateWidet={updateWidget}/>}
 
     </div>

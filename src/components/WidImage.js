@@ -12,7 +12,7 @@ const WidImage = ({widget, updateWidget}) =>
                    type="text"></input>
         </div>
         <div className="form-group row col-12">
-            <label className="col-2 col-form-label">Image URL</label>
+            <label className="col-2 col-form-label">Widget name</label>
             <input className="form-control col-10" placeholder="Widget name" type="text"></input>
         </div>
         <button onClick={() => updateWidget(widget)}
