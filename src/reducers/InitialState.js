@@ -210,6 +210,32 @@ const listWidget1 =
         }
     }
 
+const listWidget2 =
+    {
+        id: 891,
+        title: "Best New England States",
+        type: "LIST",
+        link: {
+            url: "",
+            linkText: ""
+        },
+        image: {
+            url: "",
+
+        },
+        heading: {
+            headingText: "",
+            headingSize: 0
+        },
+        paragraph: {
+            paragraphText: ""
+        },
+        list: {
+            listType: "ORDERED",
+            listItems: ["Massachusetts", "Maine", "Vermont"]
+        }
+    }
+
     // const listWidget1 = widgetTemplate;
     // listWidget1.id = 891;
     // listWidget1.title = "Favorite foods";
@@ -229,15 +255,15 @@ const listWidget1 =
         courses[0].modules[0].lessons[0].topics[0].widgets.push(linkWidget1);
        courses[0].modules[0].lessons[0].topics[0].widgets.push(paragraphWidget1);
         courses[0].modules[0].lessons[0].topics[0].widgets.push(imageWidget1);
-        // courses[0].modules[0].lessons[0].topics[1].widgets.push(linkWidget2);
+        courses[0].modules[0].lessons[0].topics[0].widgets.push(listWidget2);
         courses[0].modules[0].lessons[0].topics[1].widgets.push(paragraphWidget1);
         // courses[0].modules[0].lessons[0].topics[1].widgets.push(imageWidget2);
-        //courses[0].modules[0].lessons[1].topics[0].widgets.push(listWidget2);
+        courses[0].modules[0].lessons[0].topics[0].widgets.push(listWidget1);
         courses[0].modules[0].lessons[1].topics[0].widgets.push(paragraphWidget1);
         // courses[0].modules[0].lessons[1].topics[0].widgets.push(headingWidget2);
           courses[0].modules[0].lessons[1].topics[1].widgets.push(listWidget1);
          courses[0].modules[0].lessons[1].topics[1].widgets.push(paragraphWidget1);
-         courses[0].modules[0].lessons[1].topics[1].widgets.push(headingWidget1);
+         courses[0].modules[0].lessons[0].topics[0].widgets.push(headingWidget1);
         console.log(courses);
        }
         return courses;

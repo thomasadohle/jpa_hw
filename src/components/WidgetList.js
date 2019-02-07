@@ -3,7 +3,7 @@ import LinkWidget from "./CourseEditor";
 import ImageWidget from "./WidImage"
 import ParagraphWidget from "./WidParagraph";
 import HeadingWidget from "./WidHeading"
-import ListWidget from "./WidgList"
+import ListWidget from "./WidList"
 import WidComponent from "./WidComponent"
 
 

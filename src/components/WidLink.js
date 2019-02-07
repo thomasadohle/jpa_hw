@@ -16,7 +16,7 @@ const WidLink = ({widget, updateWidget}) =>
                 <input className="form-control col-10" placeholder={widget.link.linkText} type="text"></input>
             </div>
 
-      
+
             <div className="form-group col-12 row">
                 <label className="col-2 col-form-label">Widget Name</label>
                 <input className="form-control col-10" placeholder={widget.title} type="text"></input>

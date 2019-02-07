@@ -1,8 +1,9 @@
 import React from 'react'
-import WidHeading from './WidHeading'
 import WidImage from './WidImage'
 import WidParagraph from './WidParagraph'
 import WidLink from "./WidLink"
+import WidList from "./WidList"
+import WidHeading from "./WidHeading"
 //
 // const WidComponent = ({widget, deleteWidget, updateWidget}) =>
 //     <div>
@@ -65,6 +66,12 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
         {widget.type ==="LINK" &&
         <WidLink widget={widget}
                       updateWidet={updateWidget}/>}
+        {widget.type ==="LIST" &&
+        <WidList widget={widget}
+                 updateWidet={updateWidget}/>}
+        {widget.type ==="HEADING" &&
+        <WidHeading widget={widget}
+                 updateWidet={updateWidget}/>}
 
     </div>
 export default WidComponent
