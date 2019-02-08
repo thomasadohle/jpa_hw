@@ -87,7 +87,8 @@ const widgetReducer = (state, action) => {
                 newWidgets: [
                     ...state.newWidgets,
                     newWidget
-                ]
+                ],
+                topicId: state.topicId
             }
         case 'UPDATE_WIDGET':
             console.log(action.widget)

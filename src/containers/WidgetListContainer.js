@@ -28,9 +28,10 @@ const dispatchToPropertyMapper = dispatch => ({
            type: 'NEW_TOPIC',
            topic: topic
         }),
-    addWidget: () =>
+    addWidget: topicId =>
         dispatch({
-            type: 'ADD_WIDGET'
+            type: 'ADD_WIDGET',
+            topicId: topicId
         }),
     updateWidget: widget =>
         dispatch({

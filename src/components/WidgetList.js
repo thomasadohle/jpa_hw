@@ -10,9 +10,11 @@ import WidComponent from "./WidComponent"
 
 const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer}) =>{
     console.log("topicFromCourseEditor: " + topicFromCourseEditor);
-    console.log("topicFromReducer: "+topicFromReducer)
+    console.log("topicFromReducer: "+ JSON.stringify(topicFromReducer))
     console.log("widgets: " + widgets)
     console.log("Type of topicFromRducer: " + (typeof topicFromReducer))
+
+    const courseEditorTopicId = topicFromCourseEditor
 
     if (topicFromReducer !==undefined){
         if (topicFromCourseEditor !== topicFromReducer){
