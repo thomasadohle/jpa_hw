@@ -10,28 +10,28 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import "./Styling/course-editor.style.client.css"
 import setUp from "../reducers/InitialState"
-const initialState = setUp()
-console.log(initialState)
+
+const service = CourseService;
+const initialState = service.courses
+console.log("Initial state in course editor: " +initialState[0].title +initialState[1].title+initialState[2].title)
+
 const store = createStore(widgetReducer, initialState);
 
 class CourseEditor extends React.Component {
   constructor(props) {
     super(props)
-    this.courseService = new CourseService()
+    this.courseService = CourseService
     const courseId = parseInt(props.match.params.id)
     const course = this.courseService.findCourseById(courseId)
-      const modules = course.modules
-      const lessons = modules.lessons
-      console.log(lessons)
-      console.log(modules)
+      const modules = this.courseService.findCourseModules(courseId)
+      //const lessons = this.courseService.findLessons(modules[0])
     this.state = {
       course: course,
-        modules: course.modules,
+        modules: modules,
       module: course.modules[0],
         lesson: course.modules[0].lessons[0],
         topic: course.modules[0].lessons[0].topics[0],
     }
-    console.log("this.state.lessons: " + this.state.lessons)
   }
   selectModule = module =>
         this.setState({
@@ -50,17 +50,14 @@ class CourseEditor extends React.Component {
 
 
     createLesson = (lessonTitle) => {
-      console.log(lessonTitle)
       var actualTitle = lessonTitle
         if(actualTitle===""){
             actualTitle = "New Lesson"
         }
-        console.log(actualTitle)
       const newLesson = {
           "title": actualTitle
       }
       this.state.module.lessons.push(newLesson)
-        console.log(this.state.module.lessons)
 
         this.setState({
             newModule: true

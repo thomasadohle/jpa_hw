@@ -11,16 +11,16 @@ var table = "table"
 class WhiteBoard extends Component {
     constructor() {
         super();
-        this.courseService = new CourseService()
-        var modules = this.courseService.findCourseModules(123)
-        var lessons = this.courseService.findLessons(modules)
-        var topics = this.courseService.findTopics(lessons)
+        this.courseService = CourseService
+        // var modules = this.courseService.findCourseModules(123)
+        // var lessons = this.courseService.findLessons(modules)
+        // var topics = this.courseService.findTopics(lessons)
 
         this.state = {
             courses: this.courseService.findAllCourses(),
             courseView: grid
         }
-        console.log("Courses from WhiteBoard: " + this.state.courses)
+        console.log("Courses from WhiteBoard: " + this.state.courses[0].title + this.state.courses[1].title + this.state.courses[2].title)
     }
     deleteCourse = course =>
         this.setState({

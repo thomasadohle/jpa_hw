@@ -51,9 +51,9 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
                     <option value="4">Link</option>
                 </select>
             </div>
-            <div className="col-lg-1 ">
+            <div className="col-lg-1 " onClick={() => deleteWidget()}>
                 <ion-icon className="wbdv-widget-delete-icon" name="close-circle-outline"
-                          size="large"></ion-icon>
+                          size="large" ></ion-icon>
             </div>
 
         </div>

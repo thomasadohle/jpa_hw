@@ -1,7 +1,13 @@
 import setUp from "../reducers/InitialState"
-class CourseService {
+
+
+class _CourseService {
     constructor() {
-        this.courses = setUp();
+            console.log("creating instance")
+            this.courses = setUp();
+            this.id = Math.random()*10;
+        console.log("Service ID: " + this.id)
+        console.log("In the constructor: " + (this.courses[0]) + " " + this.courses[1] + " " + this.courses[2])
     }
     addCourse = course => {
         if(course === null) {
@@ -10,15 +16,38 @@ class CourseService {
                 title: 'New Course'
             }
         }
+        const moduleId = Math.random()*100
+        const lessonId = Math.random()*100
+        const topicId = Math.random()*100
         course.id = (new Date()).getTime()
+        course.modules = [
+            {
+                id: moduleId,
+                title: "First Module",
+                lessons: [
+                    {
+                        id: lessonId,
+                        title: "First lesson",
+                        topics: [
+                            {
+                                id: topicId,
+                                title: "First topic",
+                                widgets: [
+                                    
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
         this.courses.push(course)
-        console.log("Made a new course called " + course.title);
-        console.log("New Course ID is: " + course.id);
+        console.log("New course added: " + JSON.stringify(this.courses[this.courses.length-1]))
         return this.courses
     }
 
     findCourseById = courseId =>
-        this.courses = this.courses.find(
+        this.courses.find(
             course => course.id === courseId
         )
     findAllCourses = () =>
@@ -43,14 +72,15 @@ class CourseService {
         return modules;
     }
 
-    findLessons = modules => {
-        console.log(modules)
+    findLessons = moduleId => {
         var lessonArr = []
-        for (var key in modules){
-            lessonArr.push(modules[0][key].lessons)
-            console.log(modules[0][0].lessons)
+        for (var c in this.courses){
+            for (var m in this.courses[c].modules){
+                if (this.courses[c].modules[m].id === moduleId){
+                    lessonArr.push(this.courses[c].modules[m].lessons)
+                }
+            }
         }
-        console.log(lessonArr)
         return lessonArr
     }
 
@@ -69,10 +99,12 @@ class CourseService {
     }
 
     findWidgets = (topicId) =>{
-        console.log("findWidgets was called")
-        console.log(this.courses.length)
+        console.log("findWidgets was called in course service")
+        console.log("searching for topicId: " + topicId)
+        console.log(this.courses)
         for (var c in this.courses){
-            console.log("Current course: " + this.courses[c].title)
+            console.log(this.courses)
+            console.log("Current course: " + this.courses[c])
             for (var m in this.courses[c].modules){
                 console.log("Current module: " + this.courses[c].modules[m])
                 for (var l in this.courses[c].modules[m].lessons){
@@ -99,7 +131,28 @@ class CourseService {
     }
 
     deleteWidget = (widgetId) => {
-        return this.state.widgets.filter(widget => widget.id !== widgetId)
+        console.log("Looking for widget with id " + widgetId)
+        for (var c in this.courses){
+            for (var m in this.courses[c].modules){
+                for (var l in this.courses[c].modules[m].lessons){
+                    for (var t in this.courses[c].modules[m].lessons[l].topics){
+                        for (var w in this.courses[c].modules[m].lessons[l].topics[t].widgets){
+                            console.log("Widget id is " + this.courses[c].modules[m].lessons[l].topics[t].widgets[w].id)
+                            if (this.courses[c].modules[m].lessons[l].topics[t].widgets[w].id === widgetId){
+                                console.log("Found it!")
+                                let newWidgets = this.courses[c].modules[m].lessons[l].topics[t].widgets
+                                console.log(newWidgets)
+                                newWidgets.splice(w,1)
+                                console.log(newWidgets)
+                                return newWidgets
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
-export default CourseService;
+let service = new _CourseService()
+export default service

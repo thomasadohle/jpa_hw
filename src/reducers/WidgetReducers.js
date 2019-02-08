@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import setUp from "./InitialState"
 import CourseService from "../services/CourseService"
 
-const service = new CourseService()
+const service = CourseService
 const createNewWidget = (action) =>{
     const newWidget =
         {
@@ -32,12 +32,12 @@ const createNewWidget = (action) =>{
 }
 
 
-const widgetReducer = (state = setUp, action) => {
+const widgetReducer = (state = setUp[0], action) => {
     switch(action.type){
         case 'DELETE_WIDGET':
             return {
                 //widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
-                widgets: service.deleteWidget(action.widget.id)
+                widgets: service.deleteWidget(123)
             }
         case 'ADD_WIDGET':
             return {

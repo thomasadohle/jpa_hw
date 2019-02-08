@@ -3,19 +3,20 @@ import {connect} from 'react-redux'
 import WidgetList from '../components/WidgetList'
 import CourseService from "../services/CourseService"
 
-const service = new CourseService()
+const service =  CourseService
 
+/*
 const findWidgets = (topicId) => {
     console.log("Topic ID is: " + topicId)
     const widgets = service.findWidgets(topicId)
     console.log("Widgets found in WidgetListContainer: " + widgets)
     return widgets
-}
+} */
 
-const widgetList = findWidgets()
+
 //Assigns attributes of the state to props of a component (WidgetList)
 const mapStateToProps = (state, ownProps) => ({
-    widgets: findWidgets(ownProps.topicId)
+    widgets: service.findWidgets(ownProps.topicId)
 })
 
 
