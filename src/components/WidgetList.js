@@ -10,7 +10,7 @@ import WidComponent from "./WidComponent"
 
 const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer,updateView,viewType}) =>{
     console.log("viewType from WidgetList: " + viewType)
-
+    const val = "EDITOR"
     const courseEditorTopicId = topicFromCourseEditor
 
     if (topicFromReducer !==undefined){
@@ -38,11 +38,17 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets
             </div>
             <div className='col4'>
                 <select className="custom-select custom-select-lg mb-3" id="viewSelector"
-                        onChange={() => {
+                        onLoad = {() => {
+                            viewType = "EDITOR"
+                            console.log("function called")
+                        }}
+
+                        onClick={() => {
                             viewType = document.getElementById("viewSelector").value
                             updateView(viewType)
                         }}>
-                    <option selected value="EDITOR">Editor View</option>
+                    <option value="choose">Choose View</option>
+                    <option  value="EDITOR">Editor View</option>
                     <option value="PREVIEW">Preview View</option>
                 </select>
         </div>

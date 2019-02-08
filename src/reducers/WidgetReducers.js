@@ -46,6 +46,7 @@ const widgetReducer = (state, action) => {
             return{
                 topicId: action.topic,
                 widgets: service.findWidgets(action.topic,"widgetReducer NEW_TOPIC"),
+                viewType: action.viewType
             }
         case 'ADD_WIDGET':
             console.log(state)
