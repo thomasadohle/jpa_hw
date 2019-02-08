@@ -7,7 +7,7 @@ import WidHeading from "./WidHeading"
 
 
 
-const WidComponent = ({widget, deleteWidget, updateWidget, viewType}) =>
+const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, moveDown}) =>
     <div className="row col-10 container wbdv-heading-widget centered wbdv-widget"
          data-name="sample-image-widget">
         <div className="row col-lg-12 wbdv-widget-first-row">
@@ -15,10 +15,20 @@ const WidComponent = ({widget, deleteWidget, updateWidget, viewType}) =>
                 <h3>{widget.title}</h3>
             </div>
             <div className="col-lg-1 ">
-                <ion-icon className="wbdv-widget-move-icon" name="arrow-round-up" size="large"></ion-icon>
+                <ion-icon className="wbdv-widget-move-icon" name="arrow-round-up" size="large"
+                          onClick={() => {
+                              console.log("clicked up")
+                              moveUp(widget)
+                          }
+                          } ></ion-icon>
             </div>
             <div className="col-lg-1 ">
-                <ion-icon className="wbdv-widget-move-icon" name="arrow-round-down" size="large"></ion-icon>
+                <ion-icon className="wbdv-widget-move-icon" name="arrow-round-down" size="large"
+                          onClick={() => {
+                              console.log("clicked down")
+                              moveDown(widget)
+                          }
+                          }></ion-icon>
             </div>
             <div className="col-lg-3 wbdv-widget-select-widget-type">
                 <select className="custom-select custom-select-lg mb-3" id={widget.id}

@@ -63,6 +63,16 @@ const dispatchToPropertyMapper = dispatch => ({
         dispatch({
             type: "UPDATE_VIEW",
             viewType: viewType
+        }),
+    moveUp: (widget) =>
+        dispatch({
+            type: "MOVE_UP",
+            widget: widget
+        }),
+    moveDown: (widget) =>
+        dispatch({
+            type: "MOVE_DOWN",
+            widget: widget
         })
 
 

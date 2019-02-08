@@ -8,10 +8,12 @@ import WidComponent from "./WidComponent"
 
 
 
-const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer,updateView,viewType}) =>{
+const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer,updateView,viewType, moveUp, moveDown}) =>{
     console.log("viewType from WidgetList: " + viewType)
     const val = "EDITOR"
     const courseEditorTopicId = topicFromCourseEditor
+
+
 
     if (topicFromReducer !==undefined){
         if (topicFromCourseEditor !== topicFromReducer){
@@ -64,7 +66,9 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets
                         updateWidget={updateWidget}
                         deleteWidget={deleteWidget}
                         widget={widget}
-                        viewType={viewType}/>
+                        viewType={viewType}
+                        moveUp={moveUp}
+                        moveDown={moveDown}/>
                 )
             }
             <button
