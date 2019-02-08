@@ -33,7 +33,7 @@ class _CourseService {
                                 id: topicId,
                                 title: "First topic",
                                 widgets: [
-                                    
+
                                 ]
                             }
                         ]
@@ -72,6 +72,30 @@ class _CourseService {
         return modules;
     }
 
+    addModule = (module, courseId) =>{
+        const moduleId = Math.random()*100
+        const lessonId = Math.random()*100
+        const topicId = Math.random()*100
+        module.id=moduleId
+        module.lessons = [
+            {
+                id: lessonId,
+                topics: [
+                    {
+                        id: topicId,
+                        widgets: []
+                    }
+                ]
+            }
+        ]
+        for (var c in this.courses){
+            if (this.courses[c].id ===courseId){
+                this.courses[c].modules.push(module)
+            }
+        }
+        console.log(this.courses[c].modules)
+    }
+
     findLessons = moduleId => {
         var lessonArr = []
         for (var c in this.courses){
@@ -84,6 +108,51 @@ class _CourseService {
         return lessonArr
     }
 
+    addLesson = (lesson, courseId,moduleId) =>{
+        const lessonId = Math.random()*100
+        const topicId = Math.random()*100
+        lesson.id = lessonId
+        lesson.topics = [
+            {
+                id: topicId,
+                widgets: []
+            }
+        ]
+        for (var c in this.courses){
+            if (this.courses[c].id===courseId){
+                for (var m in this.courses[c].modules){
+                    if (this.courses[c].modules[m].id === moduleId){
+                        this.courses[c].modules[m].lessons.push(lesson)
+                        console.log(this.courses[c].modules[m].lessons)
+                    }
+                }
+            }
+        }
+
+    }
+
+    addTopic = (topic, courseId,moduleId,lessonId) =>{
+        console.log("Add topic called")
+        const topicId = Math.random()*100
+        topic.id = topicId
+        topic.widgets=[]
+        for (var c in this.courses){
+            if (this.courses[c].id===courseId){
+                for (var m in this.courses[c].modules){
+                    if (this.courses[c].modules[m].id === moduleId){
+                        for(var l in this.courses[c].modules[m].lessons){
+                            if (this.courses[c].modules[m].lessons[l].id===lessonId){
+                                this.courses[c].modules[m].lessons[l].topics.push(topic)
+                                console.log(this.courses[c].modules[m].lessons[l].topics)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     findTopics = lessons => {
         console.log(lessons)
         var topics = []
@@ -94,7 +163,7 @@ class _CourseService {
         return topics
     }
 
-    createWidget = (topiId, widget) =>{
+    createWidget = (topicId, widget) =>{
         //
     }
 

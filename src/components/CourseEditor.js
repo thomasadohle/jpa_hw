@@ -33,6 +33,11 @@ class CourseEditor extends React.Component {
         topic: course.modules[0].lessons[0].topics[0],
     }
   }
+
+  addModule = (module) =>{
+      this.courseService.addModule(module,this.state.course.id)
+  }
+
   selectModule = module =>
         this.setState({
             module: module,
@@ -57,11 +62,12 @@ class CourseEditor extends React.Component {
       const newLesson = {
           "title": actualTitle
       }
-      this.state.module.lessons.push(newLesson)
+      //this.state.module.lessons.push(newLesson)
 
         this.setState({
             newModule: true
         })
+        this.courseService.addLesson(newLesson,this.state.course.id,this.state.module.id)
     }
 
     deleteLesson = (lesson) => {
@@ -122,10 +128,11 @@ class CourseEditor extends React.Component {
         const newTopic = {
             "title": actualTitle
         }
-        this.state.lesson.topics.push(newTopic)
+       // this.state.lesson.topics.push(newTopic)
         this.setState({
             newTopic: true
         })
+        this.courseService.addTopic(newTopic,this.state.course.id, this.state.module.id, this.state.lesson.id)
     }
 
 
@@ -142,7 +149,8 @@ class CourseEditor extends React.Component {
                 <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
                    <ModuleList selectModule={this.selectModule}
                                modules={this.state.course.modules}
-                               activeModule={this.state.module}/>
+                               activeModule={this.state.module}
+                                addModule={this.addModule}/>
                 </div>
                 <div className="col-9 wbdv-content-panel">
 

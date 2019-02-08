@@ -20,7 +20,9 @@ class ModuleList extends React.Component {
       } else{
           newModuleTitle = this.state.module.title
       }
-     var newModule = {title: newModuleTitle}
+     var newModule = {
+          title: newModuleTitle,
+                    }
     this.setState(
         {
           modules: [
@@ -32,6 +34,7 @@ class ModuleList extends React.Component {
 
         }
     )
+      this.props.addModule(newModule)
   };
 
   deleteModule = (module) => {
