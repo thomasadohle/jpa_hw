@@ -35,39 +35,58 @@ const createNewWidget = (action) =>{
 const widgetReducer = (state, action) => {
     switch(action.type){
         case 'DELETE_WIDGET':
+            console.log(state)
             return {
-                //widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
-                widgets: service.deleteWidget(123)
+                widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
+                deletes: [
+                    ...state.deletes,
+                    action.widget
+                ]
+            }
+        case 'NEW_TOPIC':
+            console.log("new topic: " + action.topic)
+            return{
+                topicId: action.topic,
+                widgets: service.findWidgets(action.topic,"widgetReducer NEW_TOPIC"),
+                newWidgets: [],
+                deletes: [],
+                updates: [],
             }
         case 'ADD_WIDGET':
             const newWidgetId = Math.random()*100
+            const newWidget = {
+                id: newWidgetId,
+                title: "New Widget",
+                type: "HEADING",
+                link: {
+                    url: "",
+                    linkText: ""
+                },
+                image: {
+                    url: "",
+
+                },
+                heading: {
+                    headingText: "New Widget",
+                    headingSize: "1"
+                },
+                paragraph: {
+                    paragraphText: ""
+                },
+                list: {
+                    listType: "",
+                    listItems: []
+                }
+            }
+            console.log(state)
             return {
                 widgets: [
                     ...state.widgets,
-                    {
-                        id: newWidgetId,
-                        title: "New Widget",
-                        type: "HEADING",
-                        link: {
-                            url: "",
-                            linkText: ""
-                        },
-                        image: {
-                            url: "",
-
-                        },
-                        heading: {
-                            headingText: "New Widget",
-                            headingSize: "1"
-                        },
-                        paragraph: {
-                            paragraphText: ""
-                        },
-                        list: {
-                            listType: "",
-                            listItems: []
-                        }
-                    }
+                    newWidget
+                ],
+                newWidgets: [
+                    ...state.newWidgets,
+                    newWidget
                 ]
             }
         case 'UPDATE_WIDGET':
@@ -82,9 +101,13 @@ const widgetReducer = (state, action) => {
                 }
             }
         case'FIND_WIDGETS_BY_TOPIC':
-            return state.widgets
+            return {
+                widgets: service.findWidgets(action.topic.id)
+            }
         case 'RETURN_ALL_WIDGETS':
-            return state.widgets
+            return {
+
+            }
         default:
             return state
 

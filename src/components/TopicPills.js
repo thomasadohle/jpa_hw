@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TopicPills = ({topics, createTopic, deleteTopic, updateTopic}) =>
+const TopicPills = ({topics, createTopic, deleteTopic, updateTopic, selectTopic}) =>
     <ul className="nav nav-tabs">
         {
             topics.map(topic =>
@@ -9,8 +9,7 @@ const TopicPills = ({topics, createTopic, deleteTopic, updateTopic}) =>
                     <div className="col-12" id="divInsideTopicListItemRow">
                         <button type="button" className="btn btn-info" id={topic.title}
                                 onClick={() => {
-                                    document.getElementById(topic.title).classList.add("active")
-
+                                   selectTopic(topic)
                                 }
                                 }>{topic.title}</button>
                         <ion-icon name="close-circle-outline" size="small" id="deleteButtonn"

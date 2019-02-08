@@ -36,7 +36,7 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
                     <option value="PARAGRAPH">Pargraph</option>
                 </select>
             </div>
-            <div className="col-lg-1 " onClick={() => deleteWidget()}>
+            <div className="col-lg-1 " onClick={() => deleteWidget(widget)}>
                 <ion-icon className="wbdv-widget-delete-icon" name="close-circle-outline"
                           size="large" ></ion-icon>
             </div>

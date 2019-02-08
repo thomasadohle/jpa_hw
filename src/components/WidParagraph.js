@@ -28,7 +28,7 @@ const widParagraph = ({widget, updateWidget}) =>{
                            updateWidget(widget)
                        }}></input>
             </div>
-        
+
         <div className="row col-lg-12">
             <h3>Preview</h3>
         </div>

@@ -9,7 +9,9 @@ const service =  CourseService
 
 //Assigns attributes of the state to props of a component (WidgetList)
 const mapStateToProps = (state, ownProps) => ({
-    widgets: state.widgets
+    widgets: state.widgets, //CourseService.findWidgets(ownProps.topicId,"mapStateToProps")
+    topicFromCourseEditor: ownProps.topicFromCourseEditor.id,
+    topicFromReducer: state.topicId
 })
 
 
@@ -20,6 +22,11 @@ const dispatchToPropertyMapper = dispatch => ({
         dispatch({
             type: 'DELETE_WIDGET',
             widget: widget
+        }),
+    newTopic: (topic) =>
+        dispatch({
+           type: 'NEW_TOPIC',
+           topic: topic
         }),
     addWidget: () =>
         dispatch({
@@ -44,7 +51,9 @@ const dispatchToPropertyMapper = dispatch => ({
         dispatch({
             type: 'FIND_ALL_WIDGETS',
             state: state
-        })
+        }),
+    saveWidgets: state => {
+    }
 
 })
 

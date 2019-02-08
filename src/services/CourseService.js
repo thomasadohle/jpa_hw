@@ -168,7 +168,6 @@ class _CourseService {
         console.log("findWidgets was called in course service")
         console.log("Signal is: " + signal)
         console.log("searching for topicId: " + topicId)
-        console.log(this.courses)
         for (var c in this.courses){
 
             for (var m in this.courses[c].modules){
@@ -177,7 +176,7 @@ class _CourseService {
                     for (var t in this.courses[c].modules[m].lessons[l].topics){
 
                         if (this.courses[c].modules[m].lessons[l].topics[t].id === topicId){
-
+                            console.log(this.courses[c].modules[m].lessons[l].topics[t].widgets)
                             return this.courses[c].modules[m].lessons[l].topics[t].widgets
                         }
                     }

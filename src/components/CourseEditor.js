@@ -34,7 +34,11 @@ class CourseEditor extends React.Component {
     }
       const initialWidgets = service.findWidgets(this.state.topic.id)
       const initialState = {
-        widgets: initialWidgets
+        topicId: this.state.topic.id,
+        widgets: initialWidgets,
+        updates: [],
+        deletes: [],
+        newWidgets: []
       }
       this.store = createStore(widgetReducer, initialState);
   }
@@ -97,6 +101,12 @@ class CourseEditor extends React.Component {
             modules: this.state.modules
         })
     }
+    selectTopic = topic =>{
+        console.log("current topic is: " + topic)
+        this.setState({
+            topic: topic,
+        })}
+
 
     deleteTopic = (topic) => {
 
@@ -165,13 +175,15 @@ class CourseEditor extends React.Component {
                         <TopicPills topics={this.state.lesson.topics}
                                 deleteTopic={this.deleteTopic}
                                 updateTopic={this.updateTopic}
-                                createTopic={this.createTopic}/>
+                                createTopic={this.createTopic}
+                                selectTopic={this.selectTopic}/>
                     </div>
                     <div className="row col-12 container"
                          id="wbdv-widget-container">
                         <Provider store={this.store}>
                             <WidgetListContainer
-                                topicId = {this.state.topic.id}/>
+                                topicFromCourseEditor = {this.state.topic}
+                                />
                         </Provider>
                     </div>
                 </div>
