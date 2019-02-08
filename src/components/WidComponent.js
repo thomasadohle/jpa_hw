@@ -4,28 +4,6 @@ import WidParagraph from './WidParagraph'
 import WidLink from "./WidLink"
 import WidList from "./WidList"
 import WidHeading from "./WidHeading"
-//
-// const WidComponent = ({widget, deleteWidget, updateWidget}) =>
-//     <div>
-//         <button onClick={() => deleteWidget(widget)}>Delete</button>
-//         <select
-//             onChange={(event) => {
-//                 widget.type = event.target.value
-//                 updateWidget(widget)
-//             }}
-//             className="form-control" value={widget.type}>
-//             <option value="HEADING">Heading</option>
-//             <option value="IMAGE">Image</option>
-//         </select>
-//         {
-//             widget.type=='HEADING' &&
-//             <Widget-Heading
-//                 updateWidget={updateWidget}
-//                 widget={widget}/> ||
-//             widget.type=='IMAGE'   && <WidImage   widget={widget}/>
-//         }
-//     </div>
-
 
 
 
@@ -43,12 +21,19 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
                 <ion-icon className="wbdv-widget-move-icon" name="arrow-round-down" size="large"></ion-icon>
             </div>
             <div className="col-lg-3 wbdv-widget-select-widget-type">
-                <select className="custom-select custom-select-lg mb-3">
+                <select className="custom-select custom-select-lg mb-3" id={widget.id}
+                    onChange={() => {
+                        var id = widget.id
+                        console.log("Widget with ID " + widget.id+ "should become a " + document.getElementById(id).value)
+                        widget.type = document.getElementById(id).value.toUpperCase()
+                        updateWidget(widget)
+                }}>
                     <option selected>{widget.type}</option>
-                    <option value="1">Heading</option>
-                    <option value="2">List</option>
-                    <option value="3">Image</option>
-                    <option value="4">Link</option>
+                    <option value="HEADING">Heading</option>
+                    <option value="LIST">List</option>
+                    <option value="IMAGE">Image</option>
+                    <option value="LINK">Link</option>
+                    <option value="PARAGRAPH">Pargraph</option>
                 </select>
             </div>
             <div className="col-lg-1 " onClick={() => deleteWidget()}>
@@ -59,19 +44,19 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
         </div>
         {widget.type ==="IMAGE" &&
         <WidImage widget={widget}
-                  updateWidet={updateWidget}/>}
+                  updateWidget={updateWidget}/>}
         {widget.type ==="PARAGRAPH" &&
         <WidParagraph widget={widget}
-                  updateWidet={updateWidget}/>}
+                  updateWidget={updateWidget}/>}
         {widget.type ==="LINK" &&
         <WidLink widget={widget}
-                      updateWidet={updateWidget}/>}
+                      updateWidget={updateWidget}/>}
         {widget.type ==="LIST" &&
         <WidList widget={widget}
-                 updateWidet={updateWidget}/>}
+                 updateWidget={updateWidget}/>}
         {widget.type ==="HEADING" &&
         <WidHeading widget={widget}
-                 updateWidet={updateWidget}/>}
+                 updateWidget={updateWidget}/>}
 
     </div>
 export default WidComponent
