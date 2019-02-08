@@ -53,7 +53,11 @@ const dispatchToPropertyMapper = dispatch => ({
     //         type: 'FIND_ALL_WIDGETS',
     //         state: state
     //     }),
-    saveWidgets: state => {
+    saveWidgets: (topicId) => {
+        dispatch({
+            type: "SAVE_WIDGETS",
+            topicId: topicId
+        })
     }
 
 })

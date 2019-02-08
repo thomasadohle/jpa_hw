@@ -34,7 +34,12 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets
                 <h2>Widget List {widgets.length}</h2>
             </div>
             <div classname="col-2">
-                <button className="btn btn-primary">Save Changes</button>
+                <button className="btn btn-primary"
+                        onClick={() => {
+                            console.log(topicFromCourseEditor)
+                            saveWidgets(topicFromCourseEditor)
+                        }
+                        }>Save Changes</button>
             </div>
 
 

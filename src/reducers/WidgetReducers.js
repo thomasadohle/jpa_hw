@@ -91,6 +91,14 @@ const widgetReducer = (state, action) => {
                 //newWidgets: state.newWidgets,
                 //deletes: this.state.deletes
             }
+        case 'SAVE_WIDGETS':
+            console.log(state.widgets)
+            console.log(action.topicId)
+            service.saveWidgets(state.widgets, action.topicId)
+            return{
+                widgets: service.findWidgets(action.topicId),
+                topicId: action.topicId
+            }
         // case 'FIND_WIDGET_BY_ID':
         //     for (var widget in state.widgets){
         //         if (widget.id === action.widget.id){

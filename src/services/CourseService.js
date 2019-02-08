@@ -201,17 +201,32 @@ class _CourseService {
                 for (var l in this.courses[c].modules[m].lessons){
                     for (var t in this.courses[c].modules[m].lessons[l].topics){
                         for (var w in this.courses[c].modules[m].lessons[l].topics[t].widgets){
-
                             if (this.courses[c].modules[m].lessons[l].topics[t].widgets[w].id === widgetId){
-
                                 let newWidgets = this.courses[c].modules[m].lessons[l].topics[t].widgets
-
                                 newWidgets.splice(w,1)
-
                                 return newWidgets
                             }
                         }
 
+                    }
+                }
+            }
+        }
+    }
+
+    saveWidgets(updatedWidgets,topicId){
+        console.log("made it to saveWidgets in CourseService")
+        console.log("widgets: " + updatedWidgets)
+        console.log("topicId: " + topicId)
+        for (var c in this.courses){
+            for (var m in this.courses[c].modules){
+                for (var l in this.courses[c].modules[m].lessons){
+                    for (var t in this.courses[c].modules[m].lessons[l].topics){
+                        if (this.courses[c].modules[m].lessons[l].topics[t].id ===topicId){
+                            this.courses[c].modules[m].lessons[l].topics[t].widgets = updatedWidgets;
+                            console.log(this.courses[c].modules[m].lessons[l].topics[t].widgets)
+                            return this.courses
+                        }
                     }
                 }
             }
