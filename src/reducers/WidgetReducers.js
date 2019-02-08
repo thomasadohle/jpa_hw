@@ -3,33 +3,33 @@ import setUp from "./InitialState"
 import CourseService from "../services/CourseService"
 
 const service = CourseService
-const createNewWidget = (action) =>{
-    const newWidget =
-        {
-            id: action.widget.id,
-            title: action.widget.title,
-            type: action.widget.type,
-            link: {
-                url: action.widget.link.url,
-                linkText: action.widget.link.linkText
-            },
-            image: {
-                url: action.widget.image.url
-
-            },
-            heading: {
-                headingText: action.widget.heading.headingText,
-                headingSize: action.widget.heading.headingSize
-            },
-            paragraph: {
-                paragraphText: action.widget.paragraph.paragraphText
-            },
-            list: {
-                listType: action.widget.list.listType,
-                listItems: action.widget.list.listItems
-            }
-        }
-}
+// const createNewWidget = (action) =>{
+//     const newWidget =
+//         {
+//             id: action.widget.id,
+//             title: action.widget.title,
+//             type: action.widget.type,
+//             link: {
+//                 url: action.widget.link.url,
+//                 linkText: action.widget.link.linkText
+//             },
+//             image: {
+//                 url: action.widget.image.url
+//
+//             },
+//             heading: {
+//                 headingText: action.widget.heading.headingText,
+//                 headingSize: action.widget.heading.headingSize
+//             },
+//             paragraph: {
+//                 paragraphText: action.widget.paragraph.paragraphText
+//             },
+//             list: {
+//                 listType: action.widget.list.listType,
+//                 listItems: action.widget.list.listItems
+//             }
+//         }
+// }
 
 
 const widgetReducer = (state, action) => {
@@ -38,21 +38,18 @@ const widgetReducer = (state, action) => {
             console.log(state)
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
-                deletes: [
-                    ...state.deletes,
-                    action.widget
-                ]
+                topicId: state.topicId,
+                //newWidgets: state.newWidgets
             }
         case 'NEW_TOPIC':
-            console.log("new topic: " + action.topic)
+            console.log(state)
             return{
                 topicId: action.topic,
                 widgets: service.findWidgets(action.topic,"widgetReducer NEW_TOPIC"),
                 newWidgets: [],
-                deletes: [],
-                updates: [],
             }
         case 'ADD_WIDGET':
+            console.log(state)
             const newWidgetId = Math.random()*100
             const newWidget = {
                 id: newWidgetId,
@@ -84,31 +81,30 @@ const widgetReducer = (state, action) => {
                     ...state.widgets,
                     newWidget
                 ],
-                newWidgets: [
-                    ...state.newWidgets,
-                    newWidget
-                ],
-                topicId: state.topicId
+                topicId: state.topicId,
+                //deletes: state.deletes
             }
         case 'UPDATE_WIDGET':
-            console.log(action.widget)
+            console.log(state)
             return{
-                widgets: state.widgets.map(widget => widget.id === action.widget.id ? action.widget : widget)
+                widgets: state.widgets.map(widget => widget.id === action.widget.id ? action.widget : widget),
+                //newWidgets: state.newWidgets,
+                //deletes: this.state.deletes
             }
-        case 'FIND_WIDGET_BY_ID':
-            for (var widget in state.widgets){
-                if (widget.id === action.widget.id){
-                    return widget
-                }
-            }
-        case'FIND_WIDGETS_BY_TOPIC':
-            return {
-                widgets: service.findWidgets(action.topic.id)
-            }
-        case 'RETURN_ALL_WIDGETS':
-            return {
-
-            }
+        // case 'FIND_WIDGET_BY_ID':
+        //     for (var widget in state.widgets){
+        //         if (widget.id === action.widget.id){
+        //             return widget
+        //         }
+        //     }
+        // case'FIND_WIDGETS_BY_TOPIC':
+        //     return {
+        //         widgets: service.findWidgets(action.topic.id)
+        //     }
+        // case 'RETURN_ALL_WIDGETS':
+        //     return {
+        //
+        //     }
         default:
             return state
 

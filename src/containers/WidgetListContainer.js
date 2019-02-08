@@ -38,21 +38,21 @@ const dispatchToPropertyMapper = dispatch => ({
             type: 'UPDATE_WIDGET',
             widget: widget
         }),
-    findWidgetById: widget =>
-        dispatch({
-            type:'FIND_WIDGET_BY_ID',
-            id: widget.id
-        }),
-    findWidgetsByTopic: topic =>
-        dispatch({
-            type: 'FIND_WIDGETS_BY_TOPIC',
-            topic: topic
-        }),
-    findAllWidgets: state =>
-        dispatch({
-            type: 'FIND_ALL_WIDGETS',
-            state: state
-        }),
+    // findWidgetById: widget =>
+    //     dispatch({
+    //         type:'FIND_WIDGET_BY_ID',
+    //         id: widget.id
+    //     }),
+    // findWidgetsByTopic: topic =>
+    //     dispatch({
+    //         type: 'FIND_WIDGETS_BY_TOPIC',
+    //         topic: topic
+    //     }),
+    // findAllWidgets: state =>
+    //     dispatch({
+    //         type: 'FIND_ALL_WIDGETS',
+    //         state: state
+    //     }),
     saveWidgets: state => {
     }
 
