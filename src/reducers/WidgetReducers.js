@@ -46,7 +46,6 @@ const widgetReducer = (state, action) => {
             return{
                 topicId: action.topic,
                 widgets: service.findWidgets(action.topic,"widgetReducer NEW_TOPIC"),
-                newWidgets: [],
             }
         case 'ADD_WIDGET':
             console.log(state)
@@ -99,6 +98,14 @@ const widgetReducer = (state, action) => {
                 widgets: service.findWidgets(action.topicId),
                 topicId: action.topicId
             }
+        case 'UPDATE_VIEW':
+            console.log("view changed")
+            return {
+                viewType: action.viewType,
+                widgets: state.widgets,
+                topicId: state.topicId
+            }
+
         // case 'FIND_WIDGET_BY_ID':
         //     for (var widget in state.widgets){
         //         if (widget.id === action.widget.id){

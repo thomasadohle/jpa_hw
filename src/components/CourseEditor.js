@@ -36,9 +36,7 @@ class CourseEditor extends React.Component {
       const initialState = {
         topicId: this.state.topic.id,
         widgets: initialWidgets,
-        updates: [],
-        deletes: [],
-        newWidgets: []
+        viewType: "EDITOR"
       }
       this.store = createStore(widgetReducer, initialState);
   }

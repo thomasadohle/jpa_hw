@@ -184,11 +184,13 @@
             "topics": [
               {
                 "id":771,
-                "title": "Agile L1 T1"
+                "title": "Agile L1 T1",
+                "widgets": []
               },
               {
                 "id": 881,
-                "title": "Agile L1 T2"
+                "title": "Agile L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -198,11 +200,13 @@
             "topics": [
               {
                 "id": 992,
-                "title": "Agile L2 T1"
+                "title": "Agile L2 T1",
+                "widgets": []
               },
               {
                 "id": 662,
-                "title": "Agile L2 T2"
+                "title": "Agile L2 T2",
+                "widgets": []
               }
             ]
           }
@@ -219,11 +223,13 @@
             "topics": [
               {
                 "id": 443,
-                "title": "Test L1 T1"
+                "title": "Test L1 T1",
+                "widgets": []
               },
               {
                 "id": 553,
-                "title": "Test L1 T2"
+                "title": "Test L1 T2",
+                "widgets": []
               }
             ]
           },
@@ -233,11 +239,13 @@
             "topics": [
               {
                 "id": 331,
-                "title": "Test L2 T1"
+                "title": "Test L2 T1",
+                "widgets": []
               },
               {
                 "id": 9997,
-                "title": "Test L2 T2"
+                "title": "Test L2 T2",
+                "widgets": []
               }
             ]
           }

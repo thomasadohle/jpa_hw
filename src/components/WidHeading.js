@@ -1,10 +1,31 @@
 import React from 'react'
 
 
-const WidHeading = ({widget, updateWidget}) => {
+const WidHeading = ({widget, updateWidget,viewType}) => {
     const headingTextId = "headingText" + widget.id
     const widgetNameId = "widgetName" + widget.id
     const headingSizeId = "headingSize" + widget.id
+
+    if (viewType==="PREVIEW"){
+        return (
+            <div>
+                <div className="row col-lg-12">
+                    <h3>Preview</h3>
+                </div>
+                <div className="row col-lg-12">
+                    {widget.heading.headingSize == 1 &&
+                    <h1>{widget.heading.headingText}</h1>}
+                    {widget.heading.headingSize == 2 &&
+                    <h2>{widget.heading.headingText}</h2>}
+                    {widget.heading.headingSize == 3 &&
+                    <h3>{widget.heading.headingText}</h3>}
+
+                </div>
+            </div>
+        );
+    }
+
+    else {
     return (
         <div className="row col-lg-12 wbdv-heading-widget-enter-heading">
             <div className="form-group col-12 row">
@@ -58,6 +79,6 @@ const WidHeading = ({widget, updateWidget}) => {
 
             </div>
         </div>)
-}
+}}
 
 export default WidHeading

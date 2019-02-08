@@ -3,10 +3,27 @@ import "./Styling/course-editor.style.client.css"
 
 
 
-const WidImage = ({widget, updateWidget}) =>{
+const WidImage = ({widget, updateWidget,viewType}) =>{
 
     const urlFieldID = "urlField" + widget.id;
     const widgetNameId = "widgetName" + widget.id
+    if (viewType === "PREVIEW"){
+        return (
+            <div>
+                <div className="row col-lg-12">
+                    <h3>Preview</h3>
+                </div>
+                <div className="row col-lg-12">
+                    <img
+                        className="wbdv-image-widget-image responsive"
+                        src={widget.image.url}>
+                    </img>
+                </div>
+            </div>
+        );
+    }
+
+    else{
     return(
     <div className="row col-lg-12 wbdv-heading-widget-enter-heading">
 
@@ -45,5 +62,5 @@ const WidImage = ({widget, updateWidget}) =>{
         </div>
     </div>);
 
-}
+}}
 export default WidImage

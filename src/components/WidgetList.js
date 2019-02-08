@@ -8,11 +8,8 @@ import WidComponent from "./WidComponent"
 
 
 
-const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer}) =>{
-    console.log("topicFromCourseEditor: " + topicFromCourseEditor);
-    console.log("topicFromReducer: "+ JSON.stringify(topicFromReducer))
-    console.log("widgets: " + widgets)
-    console.log("Type of topicFromRducer: " + (typeof topicFromReducer))
+const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer,updateView,viewType}) =>{
+    console.log("viewType from WidgetList: " + viewType)
 
     const courseEditorTopicId = topicFromCourseEditor
 
@@ -22,25 +19,34 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets
             newTopic(topicFromCourseEditor)
         }
     }
-
-
-
-
-
     return (
     <div>
-        <div className = "row col-12">
-            <div classname="col-10">
-                <h2>Widget List {widgets.length}</h2>
+        <div className = "form-inline row col-12">
+            <div classname="col-6">
+
             </div>
-            <div classname="col-2">
-                <button className="btn btn-primary"
+
+            <div classname="col-3">
+                <button className="btn btn-success"
                         onClick={() => {
                             console.log(topicFromCourseEditor)
                             saveWidgets(topicFromCourseEditor)
                         }
                         }>Save Changes</button>
             </div>
+            <div className="col-3">
+            </div>
+            <div className='col4'>
+                <select className="custom-select custom-select-lg mb-3" id="viewSelector"
+                        onChange={() => {
+                            viewType = document.getElementById("viewSelector").value
+                            updateView(viewType)
+                        }}>
+                    <option selected value="EDITOR">Editor View</option>
+                    <option value="PREVIEW">Preview View</option>
+                </select>
+        </div>
+
 
 
         </div>
@@ -51,7 +57,8 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets
                         key={widget.id}
                         updateWidget={updateWidget}
                         deleteWidget={deleteWidget}
-                        widget={widget}/>
+                        widget={widget}
+                        viewType={viewType}/>
                 )
             }
             <button

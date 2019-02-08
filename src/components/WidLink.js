@@ -1,11 +1,26 @@
 import React from 'react'
 import "./Styling/course-editor.style.client.css"
 
-const WidLink = ({widget, updateWidget}) =>{
+const WidLink = ({widget, updateWidget,viewType}) =>{
     const urlId = "urlField" + widget.id
     const linkTextId = "linkTextField" + widget.id
     const widgetNameId = "widgetNameField" + widget.id
-    return (
+
+    if (viewType==="PREVIEW"){
+        return (
+            <div>
+
+                <div className="row col-lg-12">
+                    <h3>Preview</h3>
+                </div>
+                <div className="row col-lg-12">
+                    <a href={widget.link.url}>{widget.link.linkText}</a>
+                </div>
+            </div>
+        );
+    }
+    else
+   { return (
     <div className="row col-lg-12 wbdv-heading-widget-enter-heading">
 
             <div className="form-group row col-12 ">
@@ -54,5 +69,5 @@ const WidLink = ({widget, updateWidget}) =>{
             <a href={widget.link.url}>{widget.link.linkText}</a>
         </div>
     </div>);
-}
+}}
 export default WidLink

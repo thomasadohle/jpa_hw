@@ -7,7 +7,7 @@ import WidHeading from "./WidHeading"
 
 
 
-const WidComponent = ({widget, deleteWidget, updateWidget}) =>
+const WidComponent = ({widget, deleteWidget, updateWidget, viewType}) =>
     <div className="row col-10 container wbdv-heading-widget centered wbdv-widget"
          data-name="sample-image-widget">
         <div className="row col-lg-12 wbdv-widget-first-row">
@@ -44,19 +44,24 @@ const WidComponent = ({widget, deleteWidget, updateWidget}) =>
         </div>
         {widget.type ==="IMAGE" &&
         <WidImage widget={widget}
-                  updateWidget={updateWidget}/>}
+                  updateWidget={updateWidget}
+                    viewType={viewType}/>}
         {widget.type ==="PARAGRAPH" &&
         <WidParagraph widget={widget}
-                  updateWidget={updateWidget}/>}
+                  updateWidget={updateWidget}
+                      viewType={viewType}/>}
         {widget.type ==="LINK" &&
         <WidLink widget={widget}
-                      updateWidget={updateWidget}/>}
+                      updateWidget={updateWidget}
+                 viewType={viewType}/>}
         {widget.type ==="LIST" &&
         <WidList widget={widget}
-                 updateWidget={updateWidget}/>}
+                 updateWidget={updateWidget}
+                 viewType={viewType}/>}
         {widget.type ==="HEADING" &&
         <WidHeading widget={widget}
-                 updateWidget={updateWidget}/>}
+                 updateWidget={updateWidget}
+                    viewType={viewType}/>}
 
     </div>
 export default WidComponent

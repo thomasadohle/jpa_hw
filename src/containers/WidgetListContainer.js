@@ -11,7 +11,8 @@ const service =  CourseService
 const mapStateToProps = (state, ownProps) => ({
     widgets: state.widgets, //CourseService.findWidgets(ownProps.topicId,"mapStateToProps")
     topicFromCourseEditor: ownProps.topicFromCourseEditor.id,
-    topicFromReducer: state.topicId
+    topicFromReducer: state.topicId,
+    viewType: state.viewType
 })
 
 
@@ -53,12 +54,19 @@ const dispatchToPropertyMapper = dispatch => ({
     //         type: 'FIND_ALL_WIDGETS',
     //         state: state
     //     }),
-    saveWidgets: (topicId) => {
+    saveWidgets: (topicId) =>
         dispatch({
             type: "SAVE_WIDGETS",
             topicId: topicId
+        }),
+    updateView: (viewType) =>
+        dispatch({
+            type: "UPDATE_VIEW",
+            viewType: viewType
         })
-    }
+
+
+
 
 })
 

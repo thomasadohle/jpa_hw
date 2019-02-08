@@ -10,7 +10,7 @@ const generatePreview = (wid) => {
     return placeholder
 }
 
-const WidList = ({widget, updateWidget}) =>{
+const WidList = ({widget, updateWidget, viewType}) =>{
     const listItemTextId = "listItemText" + widget.id
     const widgetNameId = "widgetNameField" + widget.id
     const listTypeId = "widgetTypeId" + widget.id
@@ -18,6 +18,31 @@ const WidList = ({widget, updateWidget}) =>{
     if (widget.list.listType === "ORDERED"){listType="Ordered List"}
     if (widget.list.listType === "UNORDERED"){listType="Unordered List"}
 
+    if (viewType ==="PREVIEW"){
+        return (
+            <div>
+                <div className="row col-lg-12">
+                    <h3>Preview</h3>
+                </div>
+                <div className="row col-lg-12">
+                    {widget.list.listType ==="UNORDERED" &&
+                    <ul>
+                        {widget.list.listItems.map(li =>
+                            <li>{li}</li>
+                        )}
+                    </ul>}
+                    {widget.list.listType ==="ORDERED" &&
+                    <ol>
+                        {widget.list.listItems.map(li =>
+                            <li>{li}</li>
+                        )}
+                    </ol>}
+                </div>
+            </div>
+        );
+    }
+
+    else {
     return (
     <div className="row col-lg-12 wbdv-heading-widget-enter-heading">
         <p>Enter each item on a separate row</p>
@@ -81,6 +106,6 @@ const WidList = ({widget, updateWidget}) =>{
             </ol>}
         </div>
     </div>);
-}
+}}
 
 export default WidList
