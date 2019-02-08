@@ -32,7 +32,7 @@ const createNewWidget = (action) =>{
 }
 
 
-const widgetReducer = (state = setUp[0], action) => {
+const widgetReducer = (state, action) => {
     switch(action.type){
         case 'DELETE_WIDGET':
             return {
@@ -40,10 +40,34 @@ const widgetReducer = (state = setUp[0], action) => {
                 widgets: service.deleteWidget(123)
             }
         case 'ADD_WIDGET':
+            const newWidgetId = Math.random()*100
             return {
                 widgets: [
                     ...state.widgets,
-                    createNewWidget(action)
+                    {
+                        id: newWidgetId,
+                        title: "New Widget",
+                        type: "HEADING",
+                        link: {
+                            url: "",
+                            linkText: ""
+                        },
+                        image: {
+                            url: "",
+
+                        },
+                        heading: {
+                            headingText: "New Widget",
+                            headingSize: "1"
+                        },
+                        paragraph: {
+                            paragraphText: ""
+                        },
+                        list: {
+                            listType: "",
+                            listItems: []
+                        }
+                    }
                 ]
             }
         case 'UPDATE_WIDGET':
@@ -56,8 +80,8 @@ const widgetReducer = (state = setUp[0], action) => {
                     return widget
                 }
             }
-        case'RETURN_WIDGETS_FOR_TOPIC':
-            return 0
+        case'FIND_WIDGETS_BY_TOPIC':
+            return state.widgets
         case 'RETURN_ALL_WIDGETS':
             return state.widgets
         default:

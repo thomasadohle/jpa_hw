@@ -7,7 +7,6 @@ class _CourseService {
             this.courses = setUp();
             this.id = Math.random()*10;
         console.log("Service ID: " + this.id)
-        console.log("In the constructor: " + (this.courses[0]) + " " + this.courses[1] + " " + this.courses[2])
     }
     addCourse = course => {
         if(course === null) {
@@ -42,7 +41,7 @@ class _CourseService {
             }
         ]
         this.courses.push(course)
-        console.log("New course added: " + JSON.stringify(this.courses[this.courses.length-1]))
+
         return this.courses
     }
 
@@ -56,8 +55,7 @@ class _CourseService {
         this.courses = this.courses.filter(
             course => course.id !== deleteCourse.id
         )
-        console.log("Course deleted");
-        console.log(this.courses);
+
         return this.courses;
     }
 
@@ -68,7 +66,6 @@ class _CourseService {
                 modules.push(this.courses[key].modules)
             }
         }
-        console.log(modules)
         return modules;
     }
 
@@ -93,7 +90,7 @@ class _CourseService {
                 this.courses[c].modules.push(module)
             }
         }
-        console.log(this.courses[c].modules)
+
     }
 
     findLessons = moduleId => {
@@ -132,7 +129,7 @@ class _CourseService {
     }
 
     addTopic = (topic, courseId,moduleId,lessonId) =>{
-        console.log("Add topic called")
+
         const topicId = Math.random()*100
         topic.id = topicId
         topic.widgets=[]
@@ -143,7 +140,7 @@ class _CourseService {
                         for(var l in this.courses[c].modules[m].lessons){
                             if (this.courses[c].modules[m].lessons[l].id===lessonId){
                                 this.courses[c].modules[m].lessons[l].topics.push(topic)
-                                console.log(this.courses[c].modules[m].lessons[l].topics)
+
                             }
                         }
                     }
@@ -167,21 +164,20 @@ class _CourseService {
         //
     }
 
-    findWidgets = (topicId) =>{
+    findWidgets = (topicId, signal="a") =>{
         console.log("findWidgets was called in course service")
+        console.log("Signal is: " + signal)
         console.log("searching for topicId: " + topicId)
         console.log(this.courses)
         for (var c in this.courses){
-            console.log(this.courses)
-            console.log("Current course: " + this.courses[c])
+
             for (var m in this.courses[c].modules){
-                console.log("Current module: " + this.courses[c].modules[m])
+
                 for (var l in this.courses[c].modules[m].lessons){
                     for (var t in this.courses[c].modules[m].lessons[l].topics){
-                        console.log("Current topic: " + t)
-                        console.log("Current topic ID: " +this.courses[c].modules[m].lessons[l].topics[t].id)
+
                         if (this.courses[c].modules[m].lessons[l].topics[t].id === topicId){
-                            console.log(this.courses[c].modules[m].lessons[l].topics[t].widgets)
+
                             return this.courses[c].modules[m].lessons[l].topics[t].widgets
                         }
                     }
@@ -206,13 +202,13 @@ class _CourseService {
                 for (var l in this.courses[c].modules[m].lessons){
                     for (var t in this.courses[c].modules[m].lessons[l].topics){
                         for (var w in this.courses[c].modules[m].lessons[l].topics[t].widgets){
-                            console.log("Widget id is " + this.courses[c].modules[m].lessons[l].topics[t].widgets[w].id)
+
                             if (this.courses[c].modules[m].lessons[l].topics[t].widgets[w].id === widgetId){
-                                console.log("Found it!")
+
                                 let newWidgets = this.courses[c].modules[m].lessons[l].topics[t].widgets
-                                console.log(newWidgets)
+
                                 newWidgets.splice(w,1)
-                                console.log(newWidgets)
+
                                 return newWidgets
                             }
                         }

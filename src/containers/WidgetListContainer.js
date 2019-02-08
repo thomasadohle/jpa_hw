@@ -5,18 +5,11 @@ import CourseService from "../services/CourseService"
 
 const service =  CourseService
 
-/*
-const findWidgets = (topicId) => {
-    console.log("Topic ID is: " + topicId)
-    const widgets = service.findWidgets(topicId)
-    console.log("Widgets found in WidgetListContainer: " + widgets)
-    return widgets
-} */
 
 
 //Assigns attributes of the state to props of a component (WidgetList)
 const mapStateToProps = (state, ownProps) => ({
-    widgets: service.findWidgets(ownProps.topicId)
+    widgets: state.widgets
 })
 
 

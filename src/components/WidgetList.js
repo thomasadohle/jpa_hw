@@ -10,7 +10,13 @@ import WidComponent from "./WidComponent"
 
 const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget}) =>
     <div>
-        <h1>Widget List {widgets.length}</h1>
+        <div className = "row col-12">
+            <div classname="col-10">
+                <h2>Widget List {widgets.length}</h2>
+            </div>
+
+
+        </div>
         <div className="list-group" id="widget-list">
             {
                 widgets.map(widget =>
