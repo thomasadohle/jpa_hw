@@ -6,6 +6,7 @@ class _CourseService {
             console.log("creating instance")
             this.courses = setUp();
             this.id = Math.random()*10;
+        this.baseUrl = "https://salty-falls-99802.herokuapp.com/"
         console.log("Service ID: " + this.id)
     }
     addCourse = course => {
@@ -231,6 +232,10 @@ class _CourseService {
                 }
             }
         }
+    }
+
+    registerUser = (user) => {
+
     }
 }
 let service = new _CourseService()

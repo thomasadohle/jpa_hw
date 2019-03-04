@@ -8,6 +8,7 @@ import widgetReducer from "./reducers/WidgetReducers"
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import Login from "./components/Login"
+import NotLoggedIn from "./components/NotLoggedIn"
 
 const store = createStore(widgetReducer);
 
@@ -20,7 +21,7 @@ if (1===2){
     );}
     if (1===1){
         ReactDOM.render(
-           <Login/>,
+           <NotLoggedIn/>,
             document.getElementById("root")
         );
 }
