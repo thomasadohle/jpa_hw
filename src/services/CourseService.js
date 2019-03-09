@@ -42,12 +42,13 @@ class _CourseService {
 
 
 
-    deleteCourse = deleteCourse =>{
-        this.courses = this.courses.filter(
-            course => course.id !== deleteCourse.id
-        )
-
-        return this.courses;
+    deleteCourse = course =>{
+        const courseId = course.id;
+        const url = this.baseUrl + "/api/courses/"+courseId
+        return fetch (url,{
+            method: "DELETE",
+            credentials: "include"
+        })
     }
 
     findCourseModules = courseId => {

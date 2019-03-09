@@ -18,7 +18,7 @@ const CourseRow = ({course, deleteCourse, courseDeleted}) =>
             <ion-icon name="close-circle-outline" size="large" className="wbdv-delete-icon"
                       onClick={() => {
                           deleteCourse(course)
-                          courseDeleted()
+                          courseDeleted(course)
                       }}></ion-icon>
         </td>
     </tr>

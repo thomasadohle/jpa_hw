@@ -41,14 +41,14 @@ class CourseTable extends React.Component {
         })
     }
 
-    courseDeleted = () => {
-        console.log("Before updating, the courses are: " + this.state.courses)
-        console.log("The coureses in the service are: " + this.props.courseService.courses)
-        this.setState({
-            courses: this.props.courseService.courses
-
+    courseDeleted = (course) => {
+        this.props.deleteCourse(course)
+        this.courseService.findAllCourses().then(courses => {
+            this.setState({
+                courses: courses
+            })
         })
-        console.log("After updating, the courses are: " + this.state.courses)
+        console.log("After delete, the courses are: " + this.state.courses)
     }
 
 
