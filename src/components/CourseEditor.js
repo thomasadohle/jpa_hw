@@ -14,67 +14,88 @@ import setUp from "../reducers/InitialState"
 const service = CourseService;
 
 
-
-
-
 class CourseEditor extends React.Component {
-  constructor(props) {
-    super(props)
-    this.courseService = CourseService
-    const courseId = parseInt(props.match.params.id)
-    const course = this.courseService.findCourseById(courseId)
-      const modules = this.courseService.findCourseModules(courseId)
-      //const lessons = this.courseService.findLessons(modules[0])
-    this.state = {
-      course: course,
-        modules: modules,
-      module: course.modules[0],
-        lesson: course.modules[0].lessons[0],
-        topic: course.modules[0].lessons[0].topics[0],
+    constructor(props) {
+        super(props)
+        this.courseService = CourseService
+        this.courseId = parseInt(props.match.params.id)
+        //const modules = this.courseService.findCourseModules(this.courseId)
+        //const lessons = this.courseService.findLessons(modules[0])
+        this.state = {
+            course: {
+                title: "",
+                id: "",
+                modules: []
+            },
+            modules: [],
+            module: {
+                title: "",
+                id: "",
+                lessons: []
+            },
+            lesson: {
+                title: "",
+                id: "",
+                topics: []
+            },
+            topic: {
+                title: "",
+                id: ""
+            },
+        }
+        const initialState = {
+            topicId: null,
+            widgets: null,
+            viewType: "EDITOR"
+        }
+        this.store = createStore(widgetReducer, initialState);
+        console.log("initial state: -> course: " + JSON.stringify(this.state.course))
     }
-      const initialWidgets = service.findWidgets(this.state.topic.id)
-      const initialState = {
-        topicId: this.state.topic.id,
-        widgets: initialWidgets,
-        viewType: "EDITOR"
-      }
-      this.store = createStore(widgetReducer, initialState);
-  }
 
-  addModule = (module) =>{
-      this.courseService.addModule(module,this.state.course.id)
-  }
+    componentDidMount() {
+        this.courseService.findCourseById(this.courseId).then(course => {
+            this.setState({
+                course: course
+            })
+            console.log("state in CourseEditor -> course: " + JSON.stringify(this.state.course))
+    })}
 
-  selectModule = module =>
+
+    addModule = (module) => {
+        this.courseService.addModule(module, this.state.course.id)
+    }
+
+    selectModule = module =>
         this.setState({
             module: module,
             lesson: module.lessons[0],
             topic: module.lessons[0].topics[0]
         })
 
-    selectLesson = lesson =>{
+    selectLesson = lesson => {
 
         this.setState({
             lesson: lesson,
             topic: lesson.topics[0]
 
-        })}
+        })
+    }
 
 
     createLesson = (lessonTitle) => {
-      var actualTitle = lessonTitle
-        if(actualTitle===""){
+        var actualTitle = lessonTitle
+        if (actualTitle === "") {
             actualTitle = "New Lesson"
         }
-      const newLesson = {
-          "title": actualTitle
-      }
-      //this.state.module.lessons.push(newLesson)
+        const newLesson = {
+            "title": actualTitle
+        }
+        //this.state.module.lessons.push(newLesson)
 
         this.setState({
             newModule: true
         })
-        this.courseService.addLesson(newLesson,this.state.course.id,this.state.module.id)
+        this.courseService.addLesson(newLesson, this.state.course.id, this.state.module.id)
     }
 
     deleteLesson = (lesson) => {
@@ -84,7 +105,7 @@ class CourseEditor extends React.Component {
             less => less.title !== lesson.title
         )
         var newModule = this.state.module
-        newModule.lessons=lessonsAfterDelete
+        newModule.lessons = lessonsAfterDelete
         this.setState(
             {
                 module: newModule
@@ -99,11 +120,12 @@ class CourseEditor extends React.Component {
             modules: this.state.modules
         })
     }
-    selectTopic = topic =>{
+    selectTopic = topic => {
         console.log("current topic is: " + topic)
         this.setState({
             topic: topic,
-        })}
+        })
+    }
 
 
     deleteTopic = (topic) => {
@@ -114,7 +136,7 @@ class CourseEditor extends React.Component {
         )
 
         var newLesson = this.state.lesson
-        newLesson.topics=topicsAfterDelete
+        newLesson.topics = topicsAfterDelete
 
         this.setState(
             {
@@ -132,62 +154,64 @@ class CourseEditor extends React.Component {
     }
 
     createTopic = (topicTitle) => {
-      var actualTitle = topicTitle
-        if(topicTitle===""){
+        var actualTitle = topicTitle
+        if (topicTitle === "") {
             actualTitle = "New Topic"
         }
         const newTopic = {
             "title": actualTitle
         }
-       // this.state.lesson.topics.push(newTopic)
+        // this.state.lesson.topics.push(newTopic)
         this.setState({
             newTopic: true
         })
-        this.courseService.addTopic(newTopic,this.state.course.id, this.state.module.id, this.state.lesson.id)
+        this.courseService.addTopic(newTopic, this.state.course.id, this.state.module.id, this.state.lesson.id)
     }
 
 
-  render() {
-    return (
-        <div className="container-fluid">
-            <div className="row col-12" id="wbdv-top-nav">
-                <div className="col-lg-10 col-sm-8" id="wbdv-course-title">{this.state.course.title}</div>
+    render() {
 
-            </div>
-            <div className="row">
-                <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
-                   <ModuleList selectModule={this.selectModule}
-                               modules={this.state.course.modules}
-                               activeModule={this.state.module}
-                                addModule={this.addModule}/>
-                </div>
-                <div className="col-9 wbdv-content-panel">
+        return (
+            <div className="container-fluid">
+                <div className="row col-12" id="wbdv-top-nav">
+                    <div className="col-lg-10 col-sm-8" id="wbdv-course-title">{this.state.course.courseTitle}</div>
 
-                    <LessonTabs lessons={this.state.module.lessons}
-                                selectLesson={this.selectLesson}
-                                createLesson={this.createLesson}
-                                deleteLesson={this.deleteLesson}
-                                updateLesson={this.updateLesson}/>
-                    <br/>
-                    <div className="row col-12">
-                        <TopicPills topics={this.state.lesson.topics}
-                                deleteTopic={this.deleteTopic}
-                                updateTopic={this.updateTopic}
-                                createTopic={this.createTopic}
-                                selectTopic={this.selectTopic}/>
+                </div>
+                <div className="row">
+                    <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
+                        <ModuleList selectModule={this.selectModule}
+                                    modules={this.state.course.modules}
+                                    activeModule={this.state.module}
+                                    addModule={this.addModule}/>
                     </div>
-                    <div className="row col-12 container"
-                         id="wbdv-widget-container">
-                        <Provider store={this.store}>
-                            <WidgetListContainer
-                                topicFromCourseEditor = {this.state.topic}
-                                />
-                        </Provider>
+                    <div className="col-9 wbdv-content-panel">
+
+                        <LessonTabs lessons={this.state.module.lessons}
+                                    selectLesson={this.selectLesson}
+                                    createLesson={this.createLesson}
+                                    deleteLesson={this.deleteLesson}
+                                    updateLesson={this.updateLesson}/>
+                        <br/>
+                        <div className="row col-12">
+                            <TopicPills topics={this.state.lesson.topics}
+                                        deleteTopic={this.deleteTopic}
+                                        updateTopic={this.updateTopic}
+                                        createTopic={this.createTopic}
+                                        selectTopic={this.selectTopic}/>
+                        </div>
+                        {/*<div className="row col-12 container"*/}
+                             {/*id="wbdv-widget-container">*/}
+                            {/*<Provider store={this.store}>*/}
+                                {/*<WidgetListContainer*/}
+                                    {/*topicFromCourseEditor={this.state.topic}*/}
+                                {/*/>*/}
+                            {/*</Provider>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>
-        </div>
-    )
-  }
+        )
+    }
 }
+
 export default CourseEditor

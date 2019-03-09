@@ -21,10 +21,17 @@ class _CourseService {
         return this.findAllCourses()
     }
 
-    findCourseById = courseId =>
-        this.courses.find(
-            course => course.id === courseId
-        )
+    findCourseById = courseId => {
+        const url = this.baseUrl + "/api/courses/" + courseId
+        return fetch(url,{
+            method: "GET",
+            credentials: 'include'
+        }).then(response => response.json())
+            .then(json => json
+            )
+            .catch(error => console.log("error in findCourseById: " + error))
+    }
+
 
     findAllCourses = () => {
         const url = this.baseUrl + "/api/courses"
