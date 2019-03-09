@@ -53,23 +53,30 @@ class _UserService {
             }).catch(function(error){
             console.log("error: " + error)
         })
-        return loggedInUser
+
     }
 
-    currentUser = () => {
-        const url = this.baseUrl + "/api/profile"
 
-        fetch(url,{
+    currentUserQuery = () => {
+        const url = this.baseUrl + "/api/profile"
+         return fetch(url, {
             method: "POST",
             credentials: 'include'
-        }).then(response => response.json()).then(json =>{
-            console.log("current user: " + JSON.stringify(json))
-            let currentUser = json;
+        }).then(function (response) {
+            console.log("response is: " + response)
+            return response.json()
+        }).then(function(json){
+            console.log("json is: " + JSON.stringify(json))
             return json
-        }).catch(function(error){
-            console.log("error in currentUser: " + error)
-        })
+         })
+            .catch(function (error) {
+                console.log("error in currentUser: " + error)
+            })
     }
+
+
+
+
 }
 let userService = new _UserService()
 export default userService
