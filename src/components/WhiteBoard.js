@@ -6,46 +6,53 @@ import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
 import "./Styling/course-editor.style.client.css"
 import "./Styling/course-list.style.client.css"
+
 var grid = "grid"
 var table = "table"
-class WhiteBoard extends Component {
-    constructor() {
-        super();
-        this.courseService = CourseService
-        // var modules = this.courseService.findCourseModules(123)
-        // var lessons = this.courseService.findLessons(modules)
-        // var topics = this.courseService.findTopics(lessons)
 
+class WhiteBoard extends Component {
+    constructor(props) {
+        super(props);
+        this.courseService = CourseService
         this.state = {
-            courses: this.courseService.findAllCourses(),
+            courses: [],
             courseView: grid
         }
-        console.log("Courses from WhiteBoard: " + this.state.courses[0].title + this.state.courses[1].title + this.state.courses[2].title)
     }
+
+    componentDidMount() {
+        this.courseService.findAllCourses().then(courses => {
+            this.setState({
+                courses: courses
+            })
+            console.log("state in Whiteboard -> courses: " + JSON.stringify(this.state.courses))
+        })
+    }
+
     deleteCourse = course =>
         this.setState({
             courses: this.courseService.deleteCourse(course),
         })
-    addCourse = () =>
-        this.setState({
-            courses: this.courseService.addCourse(null)
+    addCourse = (course) => {
+        this.courseService.addCourse(course).then(courses => {
+            console.log("courses now: " + courses)
+            this.setState({
+                courses: courses
+            })
         })
+    }
 
     toggleViews = () => {
 
         if (this.state.courseView === grid) {
-            console.log("Before event: " + this.state.courseView)
             this.setState({
                 courseView: table
             })
-            console.log("After event: " + this.state.courseView)
             return "/table"
         } else {
-            console.log("Before event: " + this.state.courseView)
             this.setState({
                 courseView: grid
             })
-            console.log("After event: " + this.state.courseView)
             return "/"
         }
     }
@@ -56,18 +63,20 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
-                        {this.state.courseView ===grid &&
+                        {this.state.courseView === grid &&
                         <Link to="/table">
                             <button className="btn btn-primary"
                                     onClick={this.toggleViews}>
-                                Toggle Course Views</button>
+                                Toggle Course Views
+                            </button>
                         </Link>
                         }
-                        {this.state.courseView ===table &&
+                        {this.state.courseView === table &&
                         <Link to="/">
                             <button className="btn btn-primary"
                                     onClick={this.toggleViews}>
-                                Toggle Course View</button>
+                                Toggle Course View
+                            </button>
                         </Link>
                         }
 
@@ -83,10 +92,10 @@ class WhiteBoard extends Component {
                                component={CourseEditor}/>
                         <Route path='/table'
                                render={() => <CourseTable
-                                                courses={this.state.courses}
-                                                addCourse={this.addCourse}
-                                                deleteCourse={this.deleteCourse}
-                                                courseService={this.courseService}/>}/>
+                                   courses={this.state.courses}
+                                   addCourse={this.addCourse}
+                                   deleteCourse={this.deleteCourse}
+                                   courseService={this.courseService}/>}/>
                     </div>
                 </Router>
             </div>

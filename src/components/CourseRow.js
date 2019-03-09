@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-const CourseRow = ({course_, deleteCourse, courseDeleted}) =>
-    <tr id={course_.id}>
+const CourseRow = ({course, deleteCourse, courseDeleted}) =>
+    <tr id={course.id}>
         <td scope="row">
-            <Link to={`/course/${course_.id}`}>
+            <Link to={`/course/${course.id}`}>
                 <ion-icon name="apps" size="large"></ion-icon>
             </Link>
         </td>
-        <td><Link to={`/course/${course_.id}`}>
-            {course_.title}
+        <td><Link to={`/course/${course.id}`}>
+            {course.courseTitle}
             </Link>
         </td>
         <td>me</td>
@@ -17,7 +17,7 @@ const CourseRow = ({course_, deleteCourse, courseDeleted}) =>
         <td>
             <ion-icon name="close-circle-outline" size="large" className="wbdv-delete-icon"
                       onClick={() => {
-                          deleteCourse(course_)
+                          deleteCourse(course)
                           courseDeleted()
                       }}></ion-icon>
         </td>

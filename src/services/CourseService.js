@@ -1,57 +1,47 @@
-import setUp from "../reducers/InitialState"
 
 
 class _CourseService {
     constructor() {
-            console.log("creating instance")
-            this.courses = setUp();
-            this.id = Math.random()*10;
-        this.baseUrl = "https://salty-falls-99802.herokuapp.com/"
-        console.log("Service ID: " + this.id)
+        this.baseUrl = "http://localhost:8080"
     }
+
     addCourse = course => {
-        if(course === null) {
-            course = {
-                id: (new Date()).getTime(),
-                title: 'New Course'
+        const url = this.baseUrl + "/api/courses"
+        console.log("addCourse from CourseService called")
+        fetch(url,{
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify(course),
+            headers: {
+                "Content-Type": "application/json",
             }
-        }
-        const moduleId = Math.random()*100
-        const lessonId = Math.random()*100
-        const topicId = Math.random()*100
-        course.id = (new Date()).getTime()
-        course.modules = [
-            {
-                id: moduleId,
-                title: "First Module",
-                lessons: [
-                    {
-                        id: lessonId,
-                        title: "First lesson",
-                        topics: [
-                            {
-                                id: topicId,
-                                title: "First topic",
-                                widgets: [
-
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-        this.courses.push(course)
-
-        return this.courses
+        }).then(response => response.json())
+            .then(json => console.log("Courses after addition: " + JSON.stringify(json)))
+            .catch(error => console.log("error in addCourse " + error))
+        return this.findAllCourses()
     }
 
     findCourseById = courseId =>
         this.courses.find(
             course => course.id === courseId
         )
-    findAllCourses = () =>
-        this.courses;
+
+    findAllCourses = () => {
+        const url = this.baseUrl + "/api/courses"
+        return fetch (url, {
+            method: "GET",
+            credentials: 'include'
+        }).then(function(response){
+            return response.json()
+        }).then(function(json){
+            return json
+        }).catch(function(error){
+            console.log("error in findAllCourses: " + error)
+        })
+    }
+
+
+
     deleteCourse = deleteCourse =>{
         this.courses = this.courses.filter(
             course => course.id !== deleteCourse.id
