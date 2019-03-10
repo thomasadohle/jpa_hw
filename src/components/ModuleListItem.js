@@ -8,11 +8,11 @@ const ModuleListItem = ({triggerModuleChange, module, selectModule, updateModule
             <div className="col-6"
                 >
                 <button type="button" className="btn btn-warning active"
-                        id={module.title}
+                        id={module.id}
                         onClick={() => {
                             {selectModule(module)}
                         }
-                        }>{module.title}</button>
+                        }>{module.moduleTitle}</button>
             </div>
 
 

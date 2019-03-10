@@ -58,7 +58,14 @@ class CourseEditor extends React.Component {
                 course: course
             })
             console.log("state in CourseEditor -> course: " + JSON.stringify(this.state.course))
-    })}
+    })
+        this.courseService.findCourseModules(this.courseId).then(courseModules =>{
+            this.setState({
+                modules: courseModules
+            })
+            console.log("state in CourseEditor -> modules: " + JSON.stringify(courseModules))
+        })
+    }
 
 
     addModule = (module) => {
@@ -180,9 +187,10 @@ class CourseEditor extends React.Component {
                 <div className="row">
                     <div className="col-3 wbdv-content-panel" id="wbdv-module-list-container">
                         <ModuleList selectModule={this.selectModule}
-                                    modules={this.state.course.modules}
+                                    modules={this.state.modules}
                                     activeModule={this.state.module}
-                                    addModule={this.addModule}/>
+                                    addModule={this.addModule}
+                                    courseId={this.courseId}/>
                     </div>
                     <div className="col-9 wbdv-content-panel">
 

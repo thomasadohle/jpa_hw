@@ -4,7 +4,7 @@ class _CourseService {
     constructor() {
         this.baseUrl = "http://localhost:8080"
     }
-
+/////////////////////////////////////////////////////////////////////////
     addCourse = course => {
         const url = this.baseUrl + "/api/courses"
         console.log("addCourse from CourseService called")
@@ -48,7 +48,6 @@ class _CourseService {
     }
 
 
-
     deleteCourse = course =>{
         const courseId = course.id;
         const url = this.baseUrl + "/api/courses/"+courseId
@@ -57,39 +56,37 @@ class _CourseService {
             credentials: "include"
         })
     }
+//////////////////////////////////////////////////////////////////////////////////
 
     findCourseModules = courseId => {
-        var modules = []
-        for (var key in this.courses){
-            if (this.courses[key].id === courseId) {
-                modules.push(this.courses[key].modules)
-            }
-        }
-        return modules;
+        const url = this.baseUrl + "/api/courses/" + courseId + "/modules"
+        console.log("findCourseModules called with URL " + url)
+        return fetch (url, {
+            method: "GET",
+            credentials: 'include'
+        }).then(function(response){
+            return response.json()
+        }).then(function(json){
+            return json
+        }).catch(function(error){
+            console.log("error in findCourseModules: " + error)
+        })
     }
 
     addModule = (module, courseId) =>{
-        const moduleId = Math.random()*100
-        const lessonId = Math.random()*100
-        const topicId = Math.random()*100
-        module.id=moduleId
-        module.lessons = [
-            {
-                id: lessonId,
-                topics: [
-                    {
-                        id: topicId,
-                        widgets: []
-                    }
-                ]
+        const url = this.baseUrl + "/api/courses/" + courseId + "/modules"
+        console.log("addModule from CourseService called with url " + url)
+        fetch(url,{
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify(module),
+            headers: {
+                "Content-Type": "application/json",
             }
-        ]
-        for (var c in this.courses){
-            if (this.courses[c].id ===courseId){
-                this.courses[c].modules.push(module)
-            }
-        }
-
+        }).then(response => response.json())
+            .then(json => console.log("Module added " + JSON.stringify(json)))
+            .catch(error => console.log("error in addModule " + error))
+        return this.findCourseModules(courseId)
     }
 
     findLessons = moduleId => {
