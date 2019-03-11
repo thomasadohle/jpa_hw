@@ -19,7 +19,7 @@ class ModuleList extends React.Component {
     }
 
     componentDidMount() {
-        this.courseService.findCourseModules(this.state.courseId).then(modules =>{
+        this.courseService.findCourseModules(this.state.courseId).then(modules => {
             this.setState({
                 modules: modules
             })
@@ -48,19 +48,13 @@ class ModuleList extends React.Component {
     };
 
     deleteModule = (module) => {
-        console.log("Made it here");
-        const modulesBeforeDelete = this.state.modules;
-        const modulesAfterDelete = modulesBeforeDelete.filter(
-            mod => mod.title !== module.title
-        );
-        this.setState(
-            {
-                modules: [
-                    ...modulesAfterDelete
-                ]
-            }
-        )
-    };
+        this.courseService.deleteModule(module)
+        this.courseService.findCourseModules(this.state.courseId).then(modules => {
+            this.setState({
+                modules: modules
+            })
+        })
+    }
 
     titleChanged = (event) => {
 

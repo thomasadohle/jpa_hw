@@ -89,6 +89,17 @@ class _CourseService {
         return this.findCourseModules(courseId)
     }
 
+    deleteModule = module =>{
+        const moduleId = module.id;
+        const url = this.baseUrl + "/api/modules/"+moduleId
+        return fetch (url,{
+            method: "DELETE",
+            credentials: "include"
+        })
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
     findLessons = moduleId => {
         var lessonArr = []
         for (var c in this.courses){
