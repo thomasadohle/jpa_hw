@@ -38,10 +38,11 @@ class ModuleList extends React.Component {
             moduleTitle: newModuleTitle,
         }
         this.courseService.addModule(newModule, this.state.courseId).then(modules => {
-            console.log("modules now: " + modules)
-            this.setState({
-                modules: modules,
-                active: modules[0]
+            this.courseService.findCourseModules(this.state.courseId).then(modules => {
+                this.setState({
+                    modules: modules,
+                    active: modules[0]
+                })
             })
         })
         //this.props.addModule(newModule)

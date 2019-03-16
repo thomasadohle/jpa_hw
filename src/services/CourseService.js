@@ -75,7 +75,7 @@ class _CourseService {
     addModule = (module, courseId) =>{
         const url = this.baseUrl + "/api/courses/" + courseId + "/modules"
         console.log("addModule from CourseService called with url " + url)
-        fetch(url,{
+        return fetch(url,{
             method: "POST",
             credentials: 'include',
             body: JSON.stringify(module),
@@ -85,7 +85,7 @@ class _CourseService {
         }).then(response => response.json())
             .then(json => console.log("Module added " + JSON.stringify(json)))
             .catch(error => console.log("error in addModule " + error))
-        return this.findCourseModules(courseId)
+
     }
 
     deleteModule = module =>{

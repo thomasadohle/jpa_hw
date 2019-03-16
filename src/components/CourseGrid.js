@@ -40,7 +40,7 @@ class CourseGrid extends React.Component{
     newCourseTitleChanged = (event) => {
         this.setState(
             {
-                course: {title: event.target.value}
+                course: {courseTitle: event.target.value}
             });
     }
 
