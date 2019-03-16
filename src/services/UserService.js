@@ -35,24 +35,30 @@ class _UserService {
     loginUser = (user) => {
         const url = this.baseUrl + "/api/login"
         let loggedInUser
-        console.log("logging in with un: " + user.username + " and pw: " + user.password)
-        fetch(url, {
+        console.log("logging in userService with user:" + JSON.stringify(user) + "and url: " + url)
+        //                   localhost:8080/api/login
+        return fetch("http://localhost:8080/api/login",
+            {
                 method: "POST",
-                credentials: 'include',
                 body: JSON.stringify(user),
                 headers: {
-                    "Content-Type": "application/json",
-                }
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include'
             }
         )
-            .then(response => response.json())
-            .then(json => {
-                console.log(json)
-                loggedInUser = json
-            }).catch(function (error) {
-            console.log("error: " + error)
-        })
+            .then(response => {
+                console.log("Fetched loggedInUser: " + response)
+                return response.json()
+            }).catch(error => console.log("error in loginUser: " + error))
+    }
 
+    logoutUser = () => {
+        let url = this.baseUrl + "/api/logout"
+        return fetch(url, {
+            method: "POST",
+            credentials: "include"
+        })
     }
 
 

@@ -33,16 +33,18 @@ class NotLoggedIn extends Component {
     }
 
     loginUser = (username, password) => {
-        console.log("login user was called with un: " + username + " and pw: " + password)
+        console.log("login user was called from NotLoggedIn with un: " + username + " and pw: " + password)
         let login = {
             username: username,
             password: password
         }
-        let currentUser = this.userService.loginUser(login)
-        console.log("here")
-        this.setState({
-            user: currentUser
+        this.userService.loginUser(login).then(user =>{
+            console.log("Fetched user in NotLoggedIn: " + JSON.stringify(user))
+            this.setState({
+                user: user
+            })
         })
+        console.log("here with user: " + JSON.stringify(this.state.user))
     }
 
 

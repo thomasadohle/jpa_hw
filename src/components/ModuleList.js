@@ -14,7 +14,7 @@ class ModuleList extends React.Component {
             modules: this.props.modules,
             activeModule: this.props.activeModule
         };
-        console.log("ModuleList course is: " + JSON.stringify(this.state.course))
+
         // this.titleChanged = this.titleChanged.bind(this);
     }
 
@@ -49,6 +49,7 @@ class ModuleList extends React.Component {
 
     deleteModule = (module) => {
         this.courseService.deleteModule(module)
+        console.log("deleteModule in ModuleList called")
         this.courseService.findCourseModules(this.state.courseId).then(modules => {
             this.setState({
                 modules: modules
@@ -66,10 +67,20 @@ class ModuleList extends React.Component {
 
     updateModule = (module) => {
         const newName = prompt("What would you like to rename the module?");
-        module.title = newName;
-        this.setState({
-            modules: this.state.modules
-        })
+        module.moduleTitle = newName
+       this.courseService.updateModule(module).then(prop => {
+           console.log("updated module: " + JSON.stringify(prop))
+           this.courseService.findCourseModules(this.state.courseId)
+               .then(modules => {
+                   console.log("After update, modules are: " + JSON.stringify(modules))
+                   this.setState({
+                       modules: modules
+                   })
+               })
+       })
+
+
+           this.courseService.findCourseModules(this.state.courseId)
     };
 
     setActive = (module) => {

@@ -29,11 +29,18 @@ class Director extends Component {
         })
     }
 
+    logoutDirector = () =>{
+        this.setState({
+            loggedIn: false
+        })
+    }
+
 
     render() {
         let comp = <NotLoggedIn/>
         if (this.state.loggedIn) {
-            comp = <WhiteBoard/>
+            comp = <WhiteBoard
+                        logoutDirector={this.logoutDirector}/>
         }
         return (
             <div>

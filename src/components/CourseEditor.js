@@ -33,6 +33,7 @@ class CourseEditor extends React.Component {
                 id: "",
                 lessons: []
             },
+            lessons: [],
             lesson: {
                 title: "",
                 id: "",
@@ -42,6 +43,7 @@ class CourseEditor extends React.Component {
                 title: "",
                 id: ""
             },
+            topics: []
         }
         const initialState = {
             topicId: null,
@@ -55,9 +57,15 @@ class CourseEditor extends React.Component {
     componentDidMount() {
         this.courseService.findCourseById(this.courseId).then(course => {
             this.setState({
-                course: course
+                course: course,
+                 modules: course.modules,
+                // module: course.modules[0],
+                // lessons: course.modules[0].lessons,
+                // lesson: course.modules[0].lessons[0],
+               // topic: course.modules[0].lessons[0].topic[0]
             })
             console.log("state in CourseEditor -> course: " + JSON.stringify(this.state.course))
+            console.log("state in CourseEditor -> modules: " + JSON.stringify(this.state.modules))
     })
         this.courseService.findCourseModules(this.courseId).then(courseModules =>{
             this.setState({
@@ -72,20 +80,29 @@ class CourseEditor extends React.Component {
         this.courseService.addModule(module, this.state.course.id)
     }
 
-    selectModule = module =>
+    selectModule = module =>{
         this.setState({
             module: module,
-            lesson: module.lessons[0],
-            topic: module.lessons[0].topics[0]
+             lessons: module.lessons,
+            topics: []
+            // topic: module.lessons[0].topics[0]
         })
+        this.courseService.findLessons(module.id).then(lessons => {
+            this.setState({
+                lessons: lessons
+            })
+        })
+    }
 
     selectLesson = lesson => {
-
         this.setState({
             lesson: lesson,
-            topic: lesson.topics[0]
-
         })
+       this.courseService.findTopics(lesson.id).then(topics => {
+           this.setState({
+               topics: topics
+           })
+       })
     }
 
 
@@ -97,36 +114,49 @@ class CourseEditor extends React.Component {
         const newLesson = {
             "title": actualTitle
         }
-        //this.state.module.lessons.push(newLesson)
-
-        this.setState({
-            newModule: true
+        this.courseService.addLesson(newLesson,this.state.module.id).then(newLesson => {
+            this.courseService.findLessons(this.state.module.id).then(lessons => {
+                this.setState({
+                    lessons: lessons
+                })
+            })
         })
-        this.courseService.addLesson(newLesson, this.state.course.id, this.state.module.id)
     }
 
-    deleteLesson = (lesson) => {
 
-        const lessonsBeforeDelete = this.state.module.lessons
-        const lessonsAfterDelete = lessonsBeforeDelete.filter(
-            less => less.title !== lesson.title
-        )
-        var newModule = this.state.module
-        newModule.lessons = lessonsAfterDelete
-        this.setState(
-            {
-                module: newModule
-            }
-        )
+    //     this.courseService.addLesson(newLesson,this.state.module.id).
+    //     then(lessons => {
+    //         this.courseService.findLessons(this.state.module.id).then(lessons => {
+    //         this.setState({
+    //             lessons: lessons
+    //         })
+    //     })
+    // }}
+
+    deleteLesson = (lesson) => {
+        this.courseService.deleteLesson(lesson)
+        console.log("deleteLesson in CourseEditor called")
+        this.courseService.findLessons(this.state.module.id).then(lessons => {
+            this.setState({
+                lessons: lessons
+            })
+        })
     }
 
     updateLesson = (lesson) => {
         const newName = prompt("What would you like to rename the lesson?")
-        lesson.title = newName
-        this.setState({
-            modules: this.state.modules
+        if (newName !== null){
+            lesson.title = newName
+        }
+        this.courseService.updateLesson(lesson).then(updated => {
+            this.courseService.findLessons(this.state.module.id).then(lessons => {
+                this.setState({
+                    lessons: lessons
+                })
+            })
         })
     }
+
     selectTopic = topic => {
         console.log("current topic is: " + topic)
         this.setState({
@@ -172,7 +202,13 @@ class CourseEditor extends React.Component {
         this.setState({
             newTopic: true
         })
-        this.courseService.addTopic(newTopic, this.state.course.id, this.state.module.id, this.state.lesson.id)
+        this.courseService.addTopic(newTopic, this.state.lesson.id).then(topics => {
+            this.courseService.findTopics(this.state.lesson.id).then(topics => {
+                this.setState({
+                    topics: topics
+                })
+            })
+        })
     }
 
 
@@ -194,14 +230,14 @@ class CourseEditor extends React.Component {
                     </div>
                     <div className="col-9 wbdv-content-panel">
 
-                        <LessonTabs lessons={this.state.module.lessons}
+                        <LessonTabs lessons={this.state.lessons}
                                     selectLesson={this.selectLesson}
                                     createLesson={this.createLesson}
                                     deleteLesson={this.deleteLesson}
                                     updateLesson={this.updateLesson}/>
                         <br/>
                         <div className="row col-12">
-                            <TopicPills topics={this.state.lesson.topics}
+                            <TopicPills topics={this.state.topics}
                                         deleteTopic={this.deleteTopic}
                                         updateTopic={this.updateTopic}
                                         createTopic={this.createTopic}

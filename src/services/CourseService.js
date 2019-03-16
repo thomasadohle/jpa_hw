@@ -92,80 +92,145 @@ class _CourseService {
     deleteModule = module =>{
         const moduleId = module.id;
         const url = this.baseUrl + "/api/modules/"+moduleId
+        console.log("deleteModule in CourseService called with url " + url)
         return fetch (url,{
             method: "DELETE",
             credentials: "include"
         })
     }
 
+    updateModule = module => {
+        const moduleId = module.id;
+        const url = this.baseUrl + "/api/modules/" + moduleId;
+        console.log("updateModule in CourseService called")
+        return fetch (url,{
+            method: "PUT",
+            credentials: "include",
+            body: JSON.stringify(module),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
     findLessons = moduleId => {
-        var lessonArr = []
-        for (var c in this.courses){
-            for (var m in this.courses[c].modules){
-                if (this.courses[c].modules[m].id === moduleId){
-                    lessonArr.push(this.courses[c].modules[m].lessons)
-                }
-            }
-        }
-        return lessonArr
+        const url = this.baseUrl + "/api/modules/" + moduleId + "/lessons"
+        console.log("findLessons called with URL " + url)
+        return fetch (url, {
+            method: "GET",
+            credentials: 'include'
+        }).then(function(response){
+            return response.json()
+        }).then(function(json){
+            return json
+        }).catch(function(error){
+            console.log("error in findLessons: " + error)
+        })
     }
 
-    addLesson = (lesson, courseId,moduleId) =>{
-        const lessonId = Math.random()*100
-        const topicId = Math.random()*100
-        lesson.id = lessonId
-        lesson.topics = [
-            {
-                id: topicId,
-                widgets: []
+    addLesson = (lesson, moduleId) =>{
+        const url = this.baseUrl + "/api/modules/" + moduleId + "/lesson"
+        console.log("addLesson from CourseService called with url " + url)
+        return fetch(url,{
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify(lesson),
+            headers: {
+                "Content-Type": "application/json",
             }
-        ]
-        for (var c in this.courses){
-            if (this.courses[c].id===courseId){
-                for (var m in this.courses[c].modules){
-                    if (this.courses[c].modules[m].id === moduleId){
-                        this.courses[c].modules[m].lessons.push(lesson)
-                        console.log(this.courses[c].modules[m].lessons)
-                    }
-                }
-            }
-        }
+        }).then(response => response.json())
+            .then(json => console.log("Lesson added " + JSON.stringify(json)))
+            .catch(error => console.log("error in addLesson " + error))
 
     }
 
-    addTopic = (topic, courseId,moduleId,lessonId) =>{
+    deleteLesson = lesson =>{
+        const lessonId = lesson.id;
+        const url = this.baseUrl + "/api/lessons/"+lessonId
+        console.log("deleteLesson in CourseService called with url " + url)
+        return fetch (url,{
+            method: "DELETE",
+            credentials: "include"
+        })
+    }
 
-        const topicId = Math.random()*100
-        topic.id = topicId
-        topic.widgets=[]
-        for (var c in this.courses){
-            if (this.courses[c].id===courseId){
-                for (var m in this.courses[c].modules){
-                    if (this.courses[c].modules[m].id === moduleId){
-                        for(var l in this.courses[c].modules[m].lessons){
-                            if (this.courses[c].modules[m].lessons[l].id===lessonId){
-                                this.courses[c].modules[m].lessons[l].topics.push(topic)
-
-                            }
-                        }
-                    }
-                }
+    updateLesson = lesson => {
+        const lessonId = lesson.id;
+        const url = this.baseUrl + "/api/lessons/" + lessonId;
+        console.log("updateLesson in CourseService called")
+        return fetch (url,{
+            method: "PUT",
+            credentials: "include",
+            body: JSON.stringify(lesson),
+            headers: {
+                "Content-Type": "application/json",
             }
-        }
-
+        })
     }
 
-    findTopics = lessons => {
-        console.log(lessons)
-        var topics = []
-        for (var key in lessons){
-            topics.push(lessons[0][key].topics)
-        }
-        console.log(topics)
-        return topics
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    findTopics = lessonId => {
+        const url = this.baseUrl + "/api/lessons/" + lessonId + "/topics"
+        console.log("findTopics called with URL " + url)
+        return fetch (url, {
+            method: "GET",
+            credentials: 'include'
+        }).then(function(response){
+            return response.json()
+        }).then(function(json){
+            return json
+        }).catch(function(error){
+            console.log("error in findTopics: " + error)
+        })
     }
+
+    addTopic = (topic, lessonId) =>{
+        const url = this.baseUrl + "/api/lessons/" + lessonId + "/topic"
+        console.log("addTopic from CourseService called with url " + url)
+        return fetch(url,{
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify(topic),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(response => response.json())
+            .then(json => console.log("Topic added " + JSON.stringify(json)))
+            .catch(error => console.log("error in addTopic " + error))
+    }
+
+    deleteTopic = topic =>{
+        const topicId = topic.id;
+        const url = this.baseUrl + "/api/topics/"+topicId
+        console.log("deleteTopic in CourseService called with url " + url)
+        return fetch (url,{
+            method: "DELETE",
+            credentials: "include"
+        })
+    }
+
+    updateTopic = topic => {
+        const topicId = topic.id;
+        const url = this.baseUrl + "/api/topics/" + topicId;
+        console.log("updateTopic in CourseService called")
+        return fetch (url,{
+            method: "PUT",
+            credentials: "include",
+            body: JSON.stringify(topic),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+    }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     createWidget = (topicId, widget) =>{
         //

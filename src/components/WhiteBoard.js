@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom'
 import CourseGrid from './CourseGrid'
 import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
+import UserService from '../services/UserService'
 import CourseEditor from "./CourseEditor";
 import "./Styling/course-editor.style.client.css"
 import "./Styling/course-list.style.client.css"
@@ -14,6 +15,7 @@ class WhiteBoard extends Component {
     constructor(props) {
         super(props);
         this.courseService = CourseService
+        this.userService = UserService
         this.state = {
             courses: [],
             courseView: grid
@@ -62,6 +64,13 @@ class WhiteBoard extends Component {
         }
     }
 
+    logout = () => {
+        this.userService.logoutUser()
+        this.props.logoutDirector()
+    }
+
+
+
 
     render() {
         return (
@@ -74,6 +83,8 @@ class WhiteBoard extends Component {
                                     onClick={this.toggleViews}>
                                 Toggle Course Views
                             </button>
+                            <button className="btn btn-warning"
+                                    onClick={this.logout}>Logout</button>
                         </Link>
                         }
                         {this.state.courseView === table &&
@@ -82,6 +93,8 @@ class WhiteBoard extends Component {
                                     onClick={this.toggleViews}>
                                 Toggle Course View
                             </button>
+                            <button className="btn btn-warning"
+                                    onClick={this.logout}>Logout</button>
                         </Link>
                         }
 
