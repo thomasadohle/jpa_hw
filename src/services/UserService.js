@@ -37,7 +37,7 @@ class _UserService {
         let loggedInUser
         console.log("logging in userService with user:" + JSON.stringify(user) + "and url: " + url)
         //                   localhost:8080/api/login
-        return fetch("http://localhost:8080/api/login",
+        return fetch(url,
             {
                 method: "POST",
                 body: JSON.stringify(user),
