@@ -17,7 +17,7 @@ class _UserService {
         const url = this.baseUrl + "/api/register"
         console.log("user received by registerUser in UserService is: " + JSON.stringify(user))
         console.log("url is: " + url)
-        fetch(url, {
+        return fetch(url, {
                 method: "POST",
                 credentials: 'include',
                 body: JSON.stringify(user),

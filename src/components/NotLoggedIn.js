@@ -28,7 +28,11 @@ class NotLoggedIn extends Component {
             password: password,
             role: role
         }
-        this.userService.registerUser(newUser)
+        this.userService.registerUser(newUser).then(user => {
+            this.setState({
+                user:user,
+            })
+        })
         // this.userService.registerUser(newUser)
     }
 
