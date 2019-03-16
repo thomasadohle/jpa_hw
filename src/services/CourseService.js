@@ -2,13 +2,13 @@
 
 class _CourseService {
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "https://salty-falls-99802.herokuapp.com"
     }
 /////////////////////////////////////////////////////////////////////////
     addCourse = course => {
         const url = this.baseUrl + "/api/courses"
         console.log("addCourse from CourseService called")
-        fetch(url,{
+        return fetch(url,{
             method: "POST",
             credentials: 'include',
             body: JSON.stringify(course),
@@ -18,7 +18,6 @@ class _CourseService {
         }).then(response => response.json())
             .then(json => console.log("Courses after addition: " + JSON.stringify(json)))
             .catch(error => console.log("error in addCourse " + error))
-        return this.findAllCourses()
     }
 
     findCourseById = courseId => {

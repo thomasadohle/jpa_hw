@@ -2,30 +2,39 @@ import React from 'react'
 import CourseCard from './CourseCard'
 import "./Styling/course-grid.style.client.css"
 import NewCourseCard from "./NewCourseCard";
+import CourseService from '../services/CourseService'
+
 //const CourseGrid = ({courses, deleteCourse, addCourse}) =>
 
 class CourseGrid extends React.Component{
     constructor(props){
         super(props)
+        this.courseService = CourseService
         this.state= {
             courses: this.props.courses
         }
     }
 
-    courseDeleted = () =>{
-        this.setState({
-            courses: this.props.courseService.courses
-
+    componentDidMount() {
+        this.courseService.findAllCourses().then(courses => {
+            this.setState({
+                courses: courses
+            })
+            console.log("state in Whiteboard -> courses: " + JSON.stringify(this.state.courses))
         })
     }
 
+
     createNewCourse = () => {
-        this.props.courseService.addCourse(this.state.course)
-        this.setState(
-            {
-                courses: this.state.courses
-            }
-        )
+        let course = this.state.course
+        this.courseService.addCourse(course).then(courses => {
+            this.courseService.findAllCourses().then(courses => {
+                console.log("Courses found: " + JSON.stringify(courses))
+                this.setState({
+                    courses: courses
+                })
+            })
+        })
     }
 
     newCourseTitleChanged = (event) => {
@@ -33,6 +42,18 @@ class CourseGrid extends React.Component{
             {
                 course: {title: event.target.value}
             });
+    }
+
+    courseDeleted = (course) => {
+        this.courseService.deleteCourse(course).then(response => {
+                this.courseService.findAllCourses().then(courses => {
+                    this.setState({
+                        courses: courses
+                    })
+                })
+            }
+        )
+
     }
 
 

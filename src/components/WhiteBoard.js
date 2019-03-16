@@ -42,9 +42,11 @@ class WhiteBoard extends Component {
 
     addCourse = (course) => {
         this.courseService.addCourse(course).then(courses => {
-            console.log("courses now: " + courses)
-            this.setState({
-                courses: courses
+            this.courseService.findAllCourses().then(courses => {
+                console.log("Courses found: " + JSON.stringify(courses))
+                this.setState({
+                    courses: courses
+                })
             })
         })
     }

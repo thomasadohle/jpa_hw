@@ -32,23 +32,27 @@ class CourseTable extends React.Component {
     }
 
     createNewCourse = () => {
-        console.log("new course : " + JSON.stringify(this.state.course))
-        this.props.addCourse(this.state.course)
-        this.courseService.findAllCourses().then(courses => {
-            this.setState({
-                courses: courses
+        let course = this.state.course
+        this.courseService.addCourse(course).then(courses => {
+            this.courseService.findAllCourses().then(courses => {
+                console.log("Courses found: " + JSON.stringify(courses))
+                this.setState({
+                    courses: courses
+                })
             })
         })
     }
 
     courseDeleted = (course) => {
-        this.props.deleteCourse(course)
-        this.courseService.findAllCourses().then(courses => {
-            this.setState({
-                courses: courses
-            })
-        })
-        console.log("After delete, the courses are: " + this.state.courses)
+        this.courseService.deleteCourse(course).then(response => {
+                this.courseService.findAllCourses().then(courses => {
+                    this.setState({
+                        courses: courses
+                    })
+                })
+            }
+        )
+
     }
 
 
