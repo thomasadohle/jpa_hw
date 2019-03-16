@@ -1,6 +1,6 @@
 class _UserService {
     constructor() {
-        this.baseUrl = "https://salty-falls-99802.herokuapp.com/"
+        this.baseUrl = "https://salty-falls-99802.herokuapp.com"
     }
 
     getUsers = () => {
