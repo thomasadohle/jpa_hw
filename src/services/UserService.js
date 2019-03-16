@@ -1,6 +1,6 @@
 class _UserService {
     constructor() {
-        this.baseUrl = "https://salty-falls-99802.herokuapp.com"
+        this.baseUrl = "https://salty-falls-99802.herokuapp.com/"
     }
 
     getUsers = () => {
@@ -9,7 +9,7 @@ class _UserService {
 
             .then(response => response.json())
             .then(json => console.log(json)).catch(function (error) {
-            console.log("error: " + error)
+            console.log("error in getUsers: " + error)
         })
     }
 
@@ -28,7 +28,7 @@ class _UserService {
         )
             .then(response => response.json())
             .then(json => console.log(json)).catch(function (error) {
-            console.log("error: " + error)
+            console.log("error in registerUser in UserService: " + error)
         })
     }
 
