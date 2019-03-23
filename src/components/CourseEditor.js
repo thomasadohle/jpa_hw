@@ -134,11 +134,11 @@ class CourseEditor extends React.Component {
     // }}
 
     deleteLesson = (lesson) => {
-        this.courseService.deleteLesson(lesson)
-        console.log("deleteLesson in CourseEditor called")
-        this.courseService.findLessons(this.state.module.id).then(lessons => {
-            this.setState({
-                lessons: lessons
+        this.courseService.deleteLesson(lesson).then(response => {
+            this.courseService.findLessons(this.state.module.id).then(lessons => {
+                this.setState({
+                    lessons: lessons
+                })
             })
         })
     }
@@ -166,27 +166,24 @@ class CourseEditor extends React.Component {
 
 
     deleteTopic = (topic) => {
-
-        const topicsBeforeDelete = this.state.lesson.topics
-        const topicsAfterDelete = topicsBeforeDelete.filter(
-            top => top.title !== topic.title
-        )
-
-        var newLesson = this.state.lesson
-        newLesson.topics = topicsAfterDelete
-
-        this.setState(
-            {
-                lesson: newLesson
-            }
-        )
+        this.courseService.deleteTopic(topic).then(resp =>{
+            this.courseService.findTopics(this.state.lesson.id).then(response =>{
+                this.setState({
+                    topics: response
+                })
+            })
+        })
     }
 
     updateTopic = (topic) => {
         const newName = prompt("What would you like to rename the topic?")
         topic.title = newName
-        this.setState({
-            modules: this.state.modules
+        this.courseService.updateTopic(topic).then(response => {
+            this.courseService.findTopics(this.state.lesson.id).then(topics => {
+                this.setState({
+                    topics: topics
+                })
+            })
         })
     }
 

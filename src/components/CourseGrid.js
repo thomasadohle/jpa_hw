@@ -11,7 +11,7 @@ class CourseGrid extends React.Component{
         super(props)
         this.courseService = CourseService
         this.state= {
-            courses: this.props.courses
+            courses: []
         }
     }
 

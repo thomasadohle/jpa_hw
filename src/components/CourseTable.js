@@ -17,7 +17,7 @@ class CourseTable extends React.Component {
         this.courseService = CourseService
         this.state = {
             course: {title: ''},
-            courses: this.props.courses
+            courses: []
         };
         console.log("State in CourseTable -> Courses: " + JSON.stringify(this.props.courses))
     }

@@ -1,17 +1,8 @@
 class _UserService {
     constructor() {
-        this.baseUrl = "https://salty-falls-99802.herokuapp.com"
+        this.baseUrl = "http://localhost:8080"
     }
 
-    getUsers = () => {
-        console.log("getUsers")
-        fetch('https://salty-falls-99802.herokuapp.com/test')
-
-            .then(response => response.json())
-            .then(json => console.log(json)).catch(function (error) {
-            console.log("error in getUsers: " + error)
-        })
-    }
 
     registerUser = (user) => {
         const url = this.baseUrl + "/api/register"
@@ -19,24 +10,23 @@ class _UserService {
         console.log("url is: " + url)
         return fetch(url, {
                 method: "POST",
-                credentials: 'include',
                 body: JSON.stringify(user),
                 headers: {
                     "Content-Type": "application/json",
-                }
+                },
+                credentials: 'include'
             }
         )
             .then(response => response.json())
             .then(json => console.log(json)).catch(function (error) {
-            console.log("error in registerUser in UserService: " + error)
-        })
+                console.log("error in registerUser in UserService: " + error)
+            })
     }
 
     loginUser = (user) => {
         const url = this.baseUrl + "/api/login"
         let loggedInUser
         console.log("logging in userService with user:" + JSON.stringify(user) + "and url: " + url)
-        //                   localhost:8080/api/login
         return fetch(url,
             {
                 method: "POST",

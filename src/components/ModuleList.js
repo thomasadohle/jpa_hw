@@ -11,7 +11,7 @@ class ModuleList extends React.Component {
         this.state = {
             courseId: this.props.courseId,
             module: {title: ''},
-            modules: this.props.modules,
+            modules: [],
             activeModule: this.props.activeModule
         };
 
@@ -49,11 +49,11 @@ class ModuleList extends React.Component {
     };
 
     deleteModule = (module) => {
-        this.courseService.deleteModule(module)
-        console.log("deleteModule in ModuleList called")
-        this.courseService.findCourseModules(this.state.courseId).then(modules => {
-            this.setState({
-                modules: modules
+        this.courseService.deleteModule(module).then(response => {
+            this.courseService.findCourseModules(this.state.courseId).then(modules => {
+                this.setState({
+                    modules: modules
+                })
             })
         })
     }
