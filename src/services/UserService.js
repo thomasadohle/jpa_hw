@@ -13,7 +13,7 @@ class _UserService {
                 credentials: 'include',
                 body: JSON.stringify(user),
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "text/plain",
                 }
 
             }
