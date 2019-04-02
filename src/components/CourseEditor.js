@@ -10,6 +10,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import "./Styling/course-editor.style.client.css"
 import setUp from "../reducers/InitialState"
+import WidgetService from "../services/WidgetService"
 
 const service = CourseService;
 
@@ -18,9 +19,8 @@ class CourseEditor extends React.Component {
     constructor(props) {
         super(props)
         this.courseService = CourseService
+        this.widgetService = WidgetService
         this.courseId = parseInt(props.match.params.id)
-        //const modules = this.courseService.findCourseModules(this.courseId)
-        //const lessons = this.courseService.findLessons(modules[0])
         this.state = {
             course: {
                 title: "",
@@ -51,7 +51,6 @@ class CourseEditor extends React.Component {
             viewType: "EDITOR"
         }
         this.store = createStore(widgetReducer, initialState);
-        console.log("initial state: -> course: " + JSON.stringify(this.state.course))
     }
 
     componentDidMount() {
@@ -59,19 +58,12 @@ class CourseEditor extends React.Component {
             this.setState({
                 course: course,
                  modules: course.modules,
-                // module: course.modules[0],
-                // lessons: course.modules[0].lessons,
-                // lesson: course.modules[0].lessons[0],
-               // topic: course.modules[0].lessons[0].topic[0]
             })
-            console.log("state in CourseEditor -> course: " + JSON.stringify(this.state.course))
-            console.log("state in CourseEditor -> modules: " + JSON.stringify(this.state.modules))
     })
         this.courseService.findCourseModules(this.courseId).then(courseModules =>{
             this.setState({
                 modules: courseModules
             })
-            console.log("state in CourseEditor -> modules: " + JSON.stringify(courseModules))
         })
     }
 
@@ -124,15 +116,6 @@ class CourseEditor extends React.Component {
     }
 
 
-    //     this.courseService.addLesson(newLesson,this.state.module.id).
-    //     then(lessons => {
-    //         this.courseService.findLessons(this.state.module.id).then(lessons => {
-    //         this.setState({
-    //             lessons: lessons
-    //         })
-    //     })
-    // }}
-
     deleteLesson = (lesson) => {
         this.courseService.deleteLesson(lesson).then(response => {
             this.courseService.findLessons(this.state.module.id).then(lessons => {
@@ -161,6 +144,11 @@ class CourseEditor extends React.Component {
         console.log("current topic is: " + topic)
         this.setState({
             topic: topic,
+        })
+        this.widgetService.findAllWidgets(this.state.topic.id).then(widgets => {
+            this.setState({
+                widgets: widgets
+            })
         })
     }
 
@@ -195,7 +183,6 @@ class CourseEditor extends React.Component {
         const newTopic = {
             "title": actualTitle
         }
-        // this.state.lesson.topics.push(newTopic)
         this.setState({
             newTopic: true
         })
@@ -240,14 +227,14 @@ class CourseEditor extends React.Component {
                                         createTopic={this.createTopic}
                                         selectTopic={this.selectTopic}/>
                         </div>
-                        {/*<div className="row col-12 container"*/}
-                             {/*id="wbdv-widget-container">*/}
-                            {/*<Provider store={this.store}>*/}
-                                {/*<WidgetListContainer*/}
-                                    {/*topicFromCourseEditor={this.state.topic}*/}
-                                {/*/>*/}
-                            {/*</Provider>*/}
-                        {/*</div>*/}
+                        <div className="row col-12 container"
+                             id="wbdv-widget-container">
+                            <Provider store={this.store}>
+                                <WidgetListContainer
+                                    topicFromCourseEditor={this.state.topic}
+                                />
+                            </Provider>
+                        </div>
                     </div>
                 </div>
             </div>
