@@ -9,12 +9,14 @@ const service =  CourseService
 
 //Assigns attributes of the state to props of a component (WidgetList)
 const mapStateToProps = (state, ownProps) => ({
-    widgets: state.widgets, //CourseService.findWidgets(ownProps.topicId,"mapStateToProps")
+    widgets: ownProps.widgets, //CourseService.findWidgets(ownProps.topicId,"mapStateToProps")
     topicFromCourseEditor: ownProps.topicFromCourseEditor.id,
-    topicFromReducer: state.topicId,
-    viewType: state.viewType
+    //topicFromReducer: state.topicId,
+    viewType: state.viewType,
+    deleteWidgets: [],
+    createWidgets: [],
+    updateWidgets: []
 })
-
 
 
 //Dispatch: calls a method in the reducer

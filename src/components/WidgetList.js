@@ -8,7 +8,12 @@ import WidComponent from "./WidComponent"
 
 
 
-const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,topicFromCourseEditor, topicFromReducer,updateView,viewType, moveUp, moveDown}) =>{
+const WidgetList = ({widgets,
+                        addWidget, deleteWidget, updateWidget, saveWidgets,newTopic,
+                        topicFromCourseEditor, topicFromReducer,
+                        updateView,
+                        viewType,
+                        moveUp, moveDown}) =>{
     console.log("viewType from WidgetList: " + viewType)
     const val = "EDITOR"
     const courseEditorTopicId = topicFromCourseEditor

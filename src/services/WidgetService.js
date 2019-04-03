@@ -1,6 +1,6 @@
 class WidgetService {
     constructor() {
-        this.baseUrl = "localhost:8080"
+        this.baseUrl = "http://localhost:8080"
     }
 
     findAllWidgets = (topicId) => {
@@ -9,6 +9,15 @@ class WidgetService {
         return fetch(url, {
             method: "GET"
         }).then(response => response.json())
-            .then(widgets => console.log("Widgets received by WidgetService: " + widgets))
+            //.then(widgets => console.log("Widgets received by WidgetService: " + JSON.stringify(widgets)))
     }
-} export default WidgetService
+
+    updateWidgets = widgets => {
+        for (var w in widgets){
+            const url = this.baseUrl + "/"
+            fetch()
+        }
+    }
+}
+let widgetService = new WidgetService();
+export default widgetService

@@ -52,11 +52,11 @@ const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, mov
             </div>
 
         </div>
-        {widget.type ==="IMAGE" &&
+        {widget.widgetType ==="IMAGE" &&
         <WidImage widget={widget}
                   updateWidget={updateWidget}
                     viewType={viewType}/>}
-        {widget.type ==="PARAGRAPH" &&
+        {widget.widgetType ==="PARAGRAPH" &&
         <WidParagraph widget={widget}
                   updateWidget={updateWidget}
                       viewType={viewType}/>}
@@ -64,11 +64,11 @@ const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, mov
         <WidLink widget={widget}
                       updateWidget={updateWidget}
                  viewType={viewType}/>}
-        {widget.type ==="LIST" &&
+        {widget.widgetType ==="LIST" &&
         <WidList widget={widget}
                  updateWidget={updateWidget}
                  viewType={viewType}/>}
-        {widget.type ==="HEADING" &&
+        {widget.widgetType ==="HEADING" &&
         <WidHeading widget={widget}
                  updateWidget={updateWidget}
                     viewType={viewType}/>}

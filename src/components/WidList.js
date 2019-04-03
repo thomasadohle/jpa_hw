@@ -3,8 +3,8 @@ import "./Styling/course-editor.style.client.css"
 
 const generatePreview = (wid) => {
     let placeholder = ""
-    for (var item in wid.list.listItems){
-        placeholder += wid.list.listItems[item]
+    for (var item in wid.items){
+        placeholder += wid.items[item]
         placeholder += "\n"
     }
     return placeholder
@@ -15,8 +15,8 @@ const WidList = ({widget, updateWidget, viewType}) =>{
     const widgetNameId = "widgetNameField" + widget.id
     const listTypeId = "widgetTypeId" + widget.id
     let listType = ""
-    if (widget.list.listType === "ORDERED"){listType="Ordered List"}
-    if (widget.list.listType === "UNORDERED"){listType="Unordered List"}
+    if (widget.ordered === true){listType="Ordered List"}
+    if (widget.ordered === false){listType="Unordered List"}
 
     if (viewType ==="PREVIEW"){
         return (
@@ -25,15 +25,15 @@ const WidList = ({widget, updateWidget, viewType}) =>{
                     <h3>Preview</h3>
                 </div>
                 <div className="row col-lg-12">
-                    {widget.list.listType ==="UNORDERED" &&
+                    {widget.ordered ===false &&
                     <ul>
-                        {widget.list.listItems.map(li =>
+                        {widget.items.map(li =>
                             <li>{li}</li>
                         )}
                     </ul>}
-                    {widget.list.listType ==="ORDERED" &&
+                    {widget.ordered === true &&
                     <ol>
-                        {widget.list.listItems.map(li =>
+                        {widget.items.map(li =>
                             <li>{li}</li>
                         )}
                     </ol>}
@@ -53,7 +53,7 @@ const WidList = ({widget, updateWidget, viewType}) =>{
                                     type="text"
                                     id={listItemTextId}
                                     onChange={() => {
-                                        widget.list.listItems = document.getElementById(listItemTextId).value.split("\n")
+                                        widget.items = document.getElementById(listItemTextId).value.split("\n")
                                         console.log(document.getElementById(listItemTextId).value.split("\n"))
                                         updateWidget(widget)
                                     }}>
@@ -67,20 +67,23 @@ const WidList = ({widget, updateWidget, viewType}) =>{
                 <select className="custom-select custom-select-lg mb-3 col-10"
                         id={listTypeId}
                         onChange={() => {
-                            console.log(document.getElementById(listTypeId).value)
-                            widget.list.listType = document.getElementById(listTypeId).value
+                            if (document.getElementById(listTypeId).value === "true"){
+                                widget.ordered = true
+                            } else {
+                                widget.ordered = false
+                            }
                             updateWidget(widget)
                         }}>
                     <option selected>{listType}</option>
-                    <option value="ORDERED">Ordered list</option>
-                    <option value="UNORDERED">Unordered list</option>
+                    <option value="true">Ordered list</option>
+                    <option value="false">Unordered list</option>
                 </select>
             </div>
 
 
             <div className="form-group col-12 row">
                 <label className="col-2 col-form-label">Widget Name</label>
-                <input className="form-control col-10" placeholder="Widget name" type="text"
+                <input className="form-control col-10" placeholder={widget.title} type="text"
                        id={widgetNameId}
                        onChange={() => {
                            widget.title = document.getElementById(widgetNameId).value
@@ -92,15 +95,15 @@ const WidList = ({widget, updateWidget, viewType}) =>{
             <h3>Preview</h3>
         </div>
         <div className="row col-lg-12">
-            {widget.list.listType ==="UNORDERED" &&
+            {widget.ordered ===false &&
                 <ul>
-                    {widget.list.listItems.map(li =>
+                    {widget.items.map(li =>
                         <li>{li}</li>
                     )}
                 </ul>}
-            {widget.list.listType ==="ORDERED" &&
+            {widget.ordered === true &&
             <ol>
-                {widget.list.listItems.map(li =>
+                {widget.items.map(li =>
                     <li>{li}</li>
                 )}
             </ol>}

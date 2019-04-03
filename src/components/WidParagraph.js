@@ -11,7 +11,7 @@ const widParagraph = ({widget, updateWidget, viewType}) =>{
                     <h3>Preview</h3>
                 </div>
                 <div className="row col-lg-12">
-                    <p>{widget.paragraph.paragraphText}</p>
+                    <p>{widget.text}</p>
                 </div>
             </div>
         )
@@ -23,10 +23,10 @@ const widParagraph = ({widget, updateWidget, viewType}) =>{
                 <div className="row col-lg-12 wbdv-heading-widget-enter-heading">
                     <div className="form-group col-12 row">
                         <label className="col-2 col-form-label">Paragraph Text</label>
-                        <textarea className="form-control col-10" placeholder={widget.paragraph.paragraphText}
+                        <textarea className="form-control col-10" placeholder={widget.text}
                                   id={textId}
                                   onChange={() => {
-                                      widget.paragraph.paragraphText = document.getElementById(textId).value
+                                      widget.text = document.getElementById(textId).value
                                       updateWidget(widget)
                                   }}>
                           </textarea>
@@ -48,7 +48,7 @@ const widParagraph = ({widget, updateWidget, viewType}) =>{
                     <h3>Preview</h3>
                 </div>
                 <div className="row col-lg-12">
-                    <p>{widget.paragraph.paragraphText}</p>
+                    <p>{widget.text}</p>
                 </div>
             </div>)
     }

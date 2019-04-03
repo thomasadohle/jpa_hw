@@ -1,35 +1,11 @@
 import {combineReducers} from 'redux'
 import setUp from "./InitialState"
 import CourseService from "../services/CourseService"
+import widgetService from "../services/WidgetService"
 
 const service = CourseService
-// const createNewWidget = (action) =>{
-//     const newWidget =
-//         {
-//             id: action.widget.id,
-//             title: action.widget.title,
-//             type: action.widget.type,
-//             link: {
-//                 url: action.widget.link.url,
-//                 linkText: action.widget.link.linkText
-//             },
-//             image: {
-//                 url: action.widget.image.url
-//
-//             },
-//             heading: {
-//                 headingText: action.widget.heading.headingText,
-//                 headingSize: action.widget.heading.headingSize
-//             },
-//             paragraph: {
-//                 paragraphText: action.widget.paragraph.paragraphText
-//             },
-//             list: {
-//                 listType: action.widget.list.listType,
-//                 listItems: action.widget.list.listItems
-//             }
-//         }
-// }
+
+
 
 
 const widgetReducer = (state, action) => {
@@ -43,53 +19,41 @@ const widgetReducer = (state, action) => {
             }
         case 'NEW_TOPIC':
             console.log(state)
-            return{
-                topicId: action.topic,
-                widgets: service.findWidgets(action.topic,"widgetReducer NEW_TOPIC"),
-                viewType: action.viewType
-            }
-        case 'ADD_WIDGET':
-            console.log(state)
-            const newWidgetId = Math.random()*100
-            const newWidget = {
-                id: newWidgetId,
-                title: "New Widget",
-                type: "HEADING",
-                link: {
-                    url: "",
-                    linkText: ""
-                },
-                image: {
-                    url: "",
-
-                },
-                heading: {
-                    headingText: "New Widget",
-                    headingSize: "1"
-                },
-                paragraph: {
-                    paragraphText: ""
-                },
-                list: {
-                    listType: "",
-                    listItems: []
+            widgetService.findAllWidgets(action.topic.id).then(widgets =>{
+                return {
+                    topicId: action.topic.id,
+                    widgets: widgets,
+                    viewType: action.viewType
                 }
+            })
+
+        case 'ADD_WIDGET':
+            const tempId = Math.random()*1000
+            const newWidget = {
+                title: "New Widget",
+                tempId: tempId,
+                widgetType: "HEADING",
+                height: 5,
+                width: 5,
+                source: "",
+                text:"",
+                size: 1,
+                items: [],
+                ordered: false
             }
-            console.log(state)
             return {
-                widgets: [
-                    ...state.widgets,
-                    newWidget
-                ],
+                widgets: state.widgets.push(newWidget),
+                //createWidgets: state.createWidgets.push(newWidget),
                 topicId: state.topicId,
-                //deletes: state.deletes
             }
         case 'UPDATE_WIDGET':
-            console.log(state)
+            console.log(state.widgets)
             return{
-                widgets: state.widgets.map(widget => widget.id === action.widget.id ? action.widget : widget),
-                //newWidgets: state.newWidgets,
-                //deletes: this.state.deletes
+                widgets: state.widgets.map(widget => {
+                    if((widget.id === action.widget.id) || (widget.tempId === action.widget.tempId)){
+                        widget = action.widget
+                    } else {widget=widget}
+            })
             }
         case 'SAVE_WIDGETS':
             console.log(state.widgets)

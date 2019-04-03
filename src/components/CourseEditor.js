@@ -43,11 +43,12 @@ class CourseEditor extends React.Component {
                 title: "",
                 id: ""
             },
-            topics: []
+            topics: [],
+            widgets: []
         }
         const initialState = {
-            topicId: null,
-            widgets: null,
+            //topicId: null,
+            widgets: [],
             viewType: "EDITOR"
         }
         this.store = createStore(widgetReducer, initialState);
@@ -141,11 +142,12 @@ class CourseEditor extends React.Component {
     }
 
     selectTopic = topic => {
-        console.log("current topic is: " + topic)
+        console.log("New topic is: " + JSON.stringify(topic))
         this.setState({
             topic: topic,
         })
-        this.widgetService.findAllWidgets(this.state.topic.id).then(widgets => {
+        console.log("Current topic is: " + JSON.stringify(this.state.topic))
+        this.widgetService.findAllWidgets(topic.id).then(widgets => {
             this.setState({
                 widgets: widgets
             })
@@ -232,6 +234,7 @@ class CourseEditor extends React.Component {
                             <Provider store={this.store}>
                                 <WidgetListContainer
                                     topicFromCourseEditor={this.state.topic}
+                                    widgets={this.state.widgets}
                                 />
                             </Provider>
                         </div>

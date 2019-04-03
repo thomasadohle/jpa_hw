@@ -13,12 +13,12 @@ const WidHeading = ({widget, updateWidget,viewType}) => {
                     <h3>Preview</h3>
                 </div>
                 <div className="row col-lg-12">
-                    {widget.heading.headingSize == 1 &&
-                    <h1>{widget.heading.headingText}</h1>}
-                    {widget.heading.headingSize == 2 &&
-                    <h2>{widget.heading.headingText}</h2>}
-                    {widget.heading.headingSize == 3 &&
-                    <h3>{widget.heading.headingText}</h3>}
+                    {widget.size == 1 &&
+                    <h1>{widget.text}</h1>}
+                    {widget.size == 2 &&
+                    <h2>{widget.text}</h2>}
+                    {widget.size == 3 &&
+                    <h3>{widget.text}</h3>}
 
                 </div>
             </div>
@@ -31,10 +31,10 @@ const WidHeading = ({widget, updateWidget,viewType}) => {
             <div className="form-group col-12 row">
                 <label className="col-2 col-form-label">Heading text</label>
                 <input type="text" className="form-control col-10"
-                       placeholder={widget.heading.headingText}
+                       placeholder={widget.text}
                        id={headingTextId}
                        onChange={() => {
-                           widget.heading.headingText = document.getElementById(headingTextId).value
+                           widget.text = document.getElementById(headingTextId).value
                            updateWidget(widget)
                        }}></input>
             </div>
@@ -45,10 +45,10 @@ const WidHeading = ({widget, updateWidget,viewType}) => {
                 <select className="custom-select custom-select-lg mb-3 col-10"
                         id={headingSizeId}
                         onChange={() => {
-                            widget.heading.headingSize = document.getElementById(headingSizeId).value
+                            widget.size = document.getElementById(headingSizeId).value
                             updateWidget(widget)
                         }}>
-                    <option selected>H{widget.heading.headingSize}</option>
+                    <option selected>H{widget.size}</option>
                     <option value="1">Heading 1</option>
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
@@ -58,7 +58,7 @@ const WidHeading = ({widget, updateWidget,viewType}) => {
 
             <div className="form-group col-12 row">
                 <label className="col-2 col-form-label">Widget Name</label>
-                <input type="text" className="form-control col-10" placeholder="Widget name"
+                <input type="text" className="form-control col-10" placeholder={widget.title}
                        id={widgetNameId}
                        onChange={() => {
                            widget.title = document.getElementById(widgetNameId).value
@@ -70,12 +70,12 @@ const WidHeading = ({widget, updateWidget,viewType}) => {
                 <h3>Preview</h3>
             </div>
             <div className="row col-lg-12">
-                {widget.heading.headingSize == 1 &&
-                <h1>{widget.heading.headingText}</h1>}
-                {widget.heading.headingSize == 2 &&
-                <h2>{widget.heading.headingText}</h2>}
-                {widget.heading.headingSize == 3 &&
-                <h3>{widget.heading.headingText}</h3>}
+                {widget.size == 1 &&
+                <h1>{widget.text}</h1>}
+                {widget.size == 2 &&
+                <h2>{widget.text}</h2>}
+                {widget.size == 3 &&
+                <h3>{widget.text}</h3>}
 
             </div>
         </div>)
