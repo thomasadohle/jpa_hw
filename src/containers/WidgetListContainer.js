@@ -21,45 +21,34 @@ const mapStateToProps = (state, ownProps) => ({
 
 //Dispatch: calls a method in the reducer
 const dispatchToPropertyMapper = dispatch => ({
-    deleteWidget: widget =>
+    deleteWidget: (widget,topic) =>
         dispatch({
             type: 'DELETE_WIDGET',
-            widget: widget
+            widget: widget,
+            topic: topic
         }),
     newTopic: (topic) =>
         dispatch({
            type: 'NEW_TOPIC',
            topic: topic
         }),
-    addWidget: topicId =>
+    addWidget: (widgetType, topicId) =>
         dispatch({
             type: 'ADD_WIDGET',
-            topicId: topicId
+            topicId: topicId,
+            widgetType: widgetType
         }),
     updateWidget: widget =>
         dispatch({
             type: 'UPDATE_WIDGET',
             widget: widget
         }),
-    // findWidgetById: widget =>
-    //     dispatch({
-    //         type:'FIND_WIDGET_BY_ID',
-    //         id: widget.id
-    //     }),
-    // findWidgetsByTopic: topic =>
-    //     dispatch({
-    //         type: 'FIND_WIDGETS_BY_TOPIC',
-    //         topic: topic
-    //     }),
-    // findAllWidgets: state =>
-    //     dispatch({
-    //         type: 'FIND_ALL_WIDGETS',
-    //         state: state
-    //     }),
-    saveWidgets: (topicId) =>
+
+    saveWidget: (widget,topicId) =>
         dispatch({
-            type: "SAVE_WIDGETS",
-            topicId: topicId
+            type: "SAVE_WIDGET",
+            topicId: topicId,
+            widget: widget
         }),
     updateView: (viewType) =>
         dispatch({
@@ -76,8 +65,6 @@ const dispatchToPropertyMapper = dispatch => ({
             type: "MOVE_DOWN",
             widget: widget
         })
-
-
 
 
 })

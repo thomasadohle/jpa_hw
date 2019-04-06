@@ -6,12 +6,11 @@ import WidList from "./WidList"
 import WidHeading from "./WidHeading"
 
 
-
-const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, moveDown}) =>
+const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, moveDown, topic, saveWidget}) =>
     <div className="row col-10 container wbdv-heading-widget centered wbdv-widget"
          data-name="sample-image-widget">
         <div className="row col-lg-12 wbdv-widget-first-row">
-            <div className="col-lg-6 wbdv-widget-title">
+            <div className="col-lg-4 wbdv-widget-title">
                 <h3>{widget.title}</h3>
             </div>
             <div className="col-lg-1 ">
@@ -20,7 +19,7 @@ const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, mov
                               console.log("clicked up")
                               moveUp(widget)
                           }
-                          } ></ion-icon>
+                          }></ion-icon>
             </div>
             <div className="col-lg-1 ">
                 <ion-icon className="wbdv-widget-move-icon" name="arrow-round-down" size="large"
@@ -32,46 +31,50 @@ const WidComponent = ({widget, deleteWidget, updateWidget, viewType, moveUp, mov
             </div>
             <div className="col-lg-3 wbdv-widget-select-widget-type">
                 <select className="custom-select custom-select-lg mb-3" id={widget.id}
-                    onChange={() => {
-                        var id = widget.id
-                        console.log("Widget with ID " + widget.id+ "should become a " + document.getElementById(id).value)
-                        widget.type = document.getElementById(id).value.toUpperCase()
-                        updateWidget(widget)
-                }}>
-                    <option selected>{widget.type}</option>
+                        onChange={() => {
+                            var id = widget.id
+                            console.log("Widget with ID " + widget.id + "should become a " + document.getElementById(id).value)
+                            widget.widgetType = document.getElementById(id).value.toUpperCase()
+                            updateWidget(widget)
+                        }}>
+                    <option selected>{widget.widgetType}</option>
                     <option value="HEADING">Heading</option>
                     <option value="LIST">List</option>
                     <option value="IMAGE">Image</option>
-                    <option value="LINK">Link</option>
                     <option value="PARAGRAPH">Pargraph</option>
                 </select>
             </div>
-            <div className="col-lg-1 " onClick={() => deleteWidget(widget)}>
+            <div className="col-lg-2"
+                onClick={() => saveWidget(widget,topic)}>
+                <button type="button" className="btn btn-info">Save</button>
+            </div>
+            <div className="col-lg-1 " onClick={() => deleteWidget(widget, topic)}>
                 <ion-icon className="wbdv-widget-delete-icon" name="close-circle-outline"
-                          size="large" ></ion-icon>
+                          size="large">
+                </ion-icon>
             </div>
 
         </div>
-        {widget.widgetType ==="IMAGE" &&
+        {widget.widgetType === "IMAGE" &&
         <WidImage widget={widget}
                   updateWidget={updateWidget}
-                    viewType={viewType}/>}
-        {widget.widgetType ==="PARAGRAPH" &&
+                  viewType={viewType}
+                    saveWidget={saveWidget}/>}
+        {widget.widgetType === "PARAGRAPH" &&
         <WidParagraph widget={widget}
-                  updateWidget={updateWidget}
-                      viewType={viewType}/>}
-        {widget.type ==="LINK" &&
-        <WidLink widget={widget}
                       updateWidget={updateWidget}
-                 viewType={viewType}/>}
-        {widget.widgetType ==="LIST" &&
+                      viewType={viewType}
+                      saveWidget={saveWidget}/>}
+        {widget.widgetType === "LIST" &&
         <WidList widget={widget}
                  updateWidget={updateWidget}
-                 viewType={viewType}/>}
-        {widget.widgetType ==="HEADING" &&
+                 viewType={viewType}
+                 saveWidget={saveWidget}/>}
+        {widget.widgetType === "HEADING" &&
         <WidHeading widget={widget}
-                 updateWidget={updateWidget}
-                    viewType={viewType}/>}
+                    updateWidget={updateWidget}
+                    viewType={viewType}
+                    saveWidget={saveWidget}/>}
 
     </div>
 export default WidComponent

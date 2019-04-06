@@ -75,6 +75,7 @@ class CourseEditor extends React.Component {
 
     selectModule = module =>{
         this.setState({
+            selectedModule: true,
             module: module,
              lessons: module.lessons,
             topics: []
@@ -89,6 +90,7 @@ class CourseEditor extends React.Component {
 
     selectLesson = lesson => {
         this.setState({
+            selectedLesson: true,
             lesson: lesson,
         })
        this.courseService.findTopics(lesson.id).then(topics => {
@@ -144,6 +146,7 @@ class CourseEditor extends React.Component {
     selectTopic = topic => {
         console.log("New topic is: " + JSON.stringify(topic))
         this.setState({
+            selectedTopic: true,
             topic: topic,
         })
         console.log("Current topic is: " + JSON.stringify(this.state.topic))
@@ -215,28 +218,30 @@ class CourseEditor extends React.Component {
                                     courseId={this.courseId}/>
                     </div>
                     <div className="col-9 wbdv-content-panel">
-
+                        {this.state.selectedModule &&
                         <LessonTabs lessons={this.state.lessons}
                                     selectLesson={this.selectLesson}
                                     createLesson={this.createLesson}
                                     deleteLesson={this.deleteLesson}
-                                    updateLesson={this.updateLesson}/>
+                                    updateLesson={this.updateLesson}/>}
                         <br/>
                         <div className="row col-12">
+                            {this.state.selectedLesson &&
                             <TopicPills topics={this.state.topics}
                                         deleteTopic={this.deleteTopic}
                                         updateTopic={this.updateTopic}
                                         createTopic={this.createTopic}
-                                        selectTopic={this.selectTopic}/>
+                                        selectTopic={this.selectTopic}/> }
                         </div>
                         <div className="row col-12 container"
                              id="wbdv-widget-container">
+                            {this.state.selectedTopic &&
                             <Provider store={this.store}>
                                 <WidgetListContainer
                                     topicFromCourseEditor={this.state.topic}
                                     widgets={this.state.widgets}
                                 />
-                            </Provider>
+                            </Provider> }
                         </div>
                     </div>
                 </div>
