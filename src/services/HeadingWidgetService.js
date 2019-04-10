@@ -2,7 +2,7 @@ import widgetService from "./WidgetService"
 
 class HeadingWidgetService {
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "https://quiet-ridge-17115.herokuapp.com"
     }
 
     findAllHeadingWidgets = () => {

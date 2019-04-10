@@ -1,6 +1,6 @@
 class _UserService {
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "https://quiet-ridge-17115.herokuapp.com"
     }
 
 

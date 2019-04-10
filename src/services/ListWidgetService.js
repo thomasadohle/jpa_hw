@@ -2,7 +2,7 @@ import widgetService from "./WidgetService"
 
 class ListWidgetService {
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "https://quiet-ridge-17115.herokuapp.com"
     }
 
     findAllListWidgets = () => {

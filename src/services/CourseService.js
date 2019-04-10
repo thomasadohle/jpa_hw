@@ -2,7 +2,7 @@
 
 class _CourseService {
     constructor() {
-        this.baseUrl = "http://localhost:8080"
+        this.baseUrl = "https://quiet-ridge-17115.herokuapp.com"
     }
 /////////////////////////////////////////////////////////////////////////
     addCourse = course => {
